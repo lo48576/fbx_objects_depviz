@@ -3,10 +3,19 @@ use fbx_direct::reader::{FbxEvent, EventReader, ParserConfig};
 use fbx_direct::common::OwnedProperty as NodeProperty;
 use self::property::ObjectProperties;
 
-pub type Graph = ::graph::Graph<Option<ObjectProperties>, ()>;
-pub type Node = ::graph::Node<Option<ObjectProperties>>;
-pub type Edge = ::graph::Edge<()>;
+pub type NodeData = Option<ObjectProperties>;
 
+pub type Graph = ::graph::Graph<NodeData, EdgeData>;
+pub type Node = ::graph::Node<NodeData>;
+pub type Edge = ::graph::Edge<EdgeData>;
+
+#[derive(Debug, Default, Clone)]
+pub struct EdgeData {
+    pub connection_type: Option<String>,
+    pub property_name: Option<String>,
+}
+
+pub mod filter;
 mod property;
 
 struct Context<'a, R: 'a+Read> {
@@ -91,7 +100,8 @@ fn traverse_pose<R: Read>(context: &mut Context<R>, obj_props: ObjectProperties)
                     context.skip_current_node();
                 }
                 if let Some(child_id) = child_id {
-                    let edge = Edge::new(obj_props.uid, child_id);
+                    let mut edge = Edge::new(obj_props.uid, child_id);
+                    edge.data.connection_type = Some("Pose".to_string());
                     context.graph.add_edge(edge);
                 }
             },
@@ -103,42 +113,6 @@ fn traverse_pose<R: Read>(context: &mut Context<R>, obj_props: ObjectProperties)
     context.graph.add_node(node);
 }
 
-pub enum LinkEndType {
-    Object,
-    Property,
-}
-
-pub struct ConnectionType {
-    pub parent: LinkEndType,
-    pub child: LinkEndType,
-}
-
-impl ConnectionType {
-    pub fn from_string(s: &str) -> Option<Self> {
-        Some(match s {
-            "OO" => ConnectionType {
-                parent: LinkEndType::Object,
-                child: LinkEndType::Object,
-            },
-            "OP" => ConnectionType {
-                parent: LinkEndType::Object,
-                child: LinkEndType::Property,
-            },
-            "PO" => ConnectionType {
-                parent: LinkEndType::Property,
-                child: LinkEndType::Object,
-            },
-            "PP" => ConnectionType {
-                parent: LinkEndType::Property,
-                child: LinkEndType::Property,
-            },
-            _ => {
-                return None;
-            },
-        })
-    }
-}
-
 fn traverse_connections<R: Read>(context: &mut Context<R>) {
     while let Some((name, properties)) = context.get_next_node_event() {
         if name != "C" {
@@ -146,12 +120,17 @@ fn traverse_connections<R: Read>(context: &mut Context<R>) {
             continue;
         }
         let mut prop_iter = properties.into_iter();
-        let connection_type = prop_iter.next().and_then(NodeProperty::into_string).and_then(|v| ConnectionType::from_string(&v));
+        let connection_type = prop_iter.next().and_then(NodeProperty::into_string);
         let child_uid = prop_iter.next().and_then(NodeProperty::into_i64);
         let parent_uid = prop_iter.next().and_then(NodeProperty::into_i64);
-        let _property_name = prop_iter.next().and_then(NodeProperty::into_string);
-        if let (Some(_connection_type), Some(child_uid), Some(parent_uid)) = (connection_type, child_uid, parent_uid) {
-            let edge = Edge::new(parent_uid, child_uid);
+        let property_name = prop_iter.next().and_then(NodeProperty::into_string);
+        if let (Some(connection_type), Some(child_uid), Some(parent_uid)) = (connection_type, child_uid, parent_uid) {
+            let mut edge = Edge::new(parent_uid, child_uid);
+            edge.data.connection_type = Some(connection_type);
+            if let Some(prop_name) = property_name {
+                edge.styles.insert("label".to_string(), prop_name.clone());
+                edge.data.property_name = Some(prop_name);
+            }
             context.graph.add_edge(edge);
         }
         context.skip_current_node();

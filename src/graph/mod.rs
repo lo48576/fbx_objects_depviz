@@ -7,6 +7,7 @@ pub struct Graph<N: Clone, E: Clone> {
     pub name: String,
     pub graph_styles: HashMap<String, String>,
     pub node_styles: HashMap<String, String>,
+    pub edge_styles: HashMap<String, String>,
     pub nodes: HashMap<i64, Node<N>>,
     pub edges: Vec<Edge<E>>,
 }
@@ -17,6 +18,7 @@ impl<N: Clone, E: Clone> Graph<N, E> {
             name: name.into(),
             graph_styles: Default::default(),
             node_styles: Default::default(),
+            edge_styles: Default::default(),
             nodes: Default::default(),
             edges: Default::default(),
         }
@@ -28,6 +30,66 @@ impl<N: Clone, E: Clone> Graph<N, E> {
 
     pub fn add_edge(&mut self, edge: Edge<E>) {
         self.edges.push(edge);
+    }
+
+    pub fn map_ascendant<I, F>(&mut self, targets: I, fun: F)
+        where I: IntoIterator<Item=i64>,
+              F: Fn(&mut Node<N>)
+    {
+        let mut done = HashSet::new();
+        // Get parents of `targets`.
+        let mut undone_next = targets.into_iter()
+            .flat_map(|i| self.edges.iter().filter(|e| e.child == i).map(|e| e.parent).collect::<Vec<_>>().into_iter())
+            .collect::<HashSet<i64>>();
+        loop {
+            let undone_current = undone_next;
+            undone_next = HashSet::new();
+            for target in undone_current {
+                if done.contains(&target) {
+                    continue;
+                }
+                // Process current node.
+                self.nodes.get_mut(&target).map(&fun);
+                // Queue parents of the `target`.
+                for parent in self.edges.iter().filter(|e| e.child == target).map(|e| e.parent).filter(|p| !done.contains(p)) {
+                    undone_next.insert(parent);
+                }
+                done.insert(target);
+            }
+            if undone_next.is_empty() {
+                break;
+            }
+        }
+    }
+
+    pub fn map_descendant<I, F>(&mut self, targets: I, fun: F)
+        where I: IntoIterator<Item=i64>,
+              F: Fn(&mut Node<N>)
+    {
+        let mut done = HashSet::new();
+        // Get children of `targets`.
+        let mut undone_next = targets.into_iter()
+            .flat_map(|i| self.edges.iter().filter(|e| e.parent == i).map(|e| e.child).collect::<Vec<_>>().into_iter())
+            .collect::<HashSet<i64>>();
+        loop {
+            let undone_current = undone_next;
+            undone_next = HashSet::new();
+            for target in undone_current {
+                if done.contains(&target) {
+                    continue;
+                }
+                // Process current node.
+                self.nodes.get_mut(&target).map(&fun);
+                // Queue children of the `target`.
+                for parent in self.edges.iter().filter(|e| e.parent == target).map(|e| e.child).filter(|p| !done.contains(p)) {
+                    undone_next.insert(parent);
+                }
+                done.insert(target);
+            }
+            if undone_next.is_empty() {
+                break;
+            }
+        }
     }
 
     pub fn output_all<W: Write>(&self, out: &mut W) -> io::Result<()> {
@@ -65,7 +127,7 @@ impl<N: Clone, E: Clone> Graph<N, E> {
     pub fn print_beginning<W: Write>(&self, out: &mut W) -> io::Result<()> {
         try!(writeln!(out, "digraph \"{}\" {{", self.name));
 
-        // Print graph settings
+        // Print graph settings.
         if self.graph_styles.len() > 0 {
             let mut print_comma = false;
             try!(writeln!(out, "\tgraph ["));
@@ -79,11 +141,25 @@ impl<N: Clone, E: Clone> Graph<N, E> {
             try!(writeln!(out, "\n\t]"));
         }
 
-        // Print node settings
+        // Print node settings.
         if self.node_styles.len() > 0 {
             let mut print_comma = false;
             try!(writeln!(out, "\tnode ["));
             for (key, value) in &self.node_styles {
+                if print_comma {
+                    try!(write!(out, "\n, "));
+                }
+                try!(write!(out, "\t\t{}=\"{}\"", style_escape(key), style_escape(value)));
+                print_comma = true;
+            }
+            try!(writeln!(out, "\n\t]"));
+        }
+
+        // Print edge settings.
+        if self.edge_styles.len() > 0 {
+            let mut print_comma = false;
+            try!(writeln!(out, "\tedge ["));
+            for (key, value) in &self.edge_styles {
                 if print_comma {
                     try!(write!(out, "\n, "));
                 }
