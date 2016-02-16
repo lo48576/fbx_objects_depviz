@@ -30,12 +30,12 @@ fn main() {
         .and_then(|d| d.decode())
         .unwrap_or_else(|e| e.exit());
 
-    let mut graph = graph::Graph::new(args.arg_fbx_name.clone());
-    graph.node_styles.push("shape=box".to_string());
+    let mut graph = fbx::Graph::new(args.arg_fbx_name.clone());
+    graph.node_styles.insert("shape".to_string(), "box".to_string());
 
     // Add implicit root node.
     {
-        let root = graph::Node::new(0);
+        let root = fbx::Node::new(0);
         graph.add_node(root);
     }
 

@@ -1,8 +1,11 @@
 use std::io::Read;
 use fbx_direct::reader::{FbxEvent, EventReader, ParserConfig};
 use fbx_direct::common::OwnedProperty as NodeProperty;
-use graph::{Graph, Node, Edge};
 use self::property::ObjectProperties;
+
+pub type Graph = ::graph::Graph<Option<ObjectProperties>, ()>;
+pub type Node = ::graph::Node<Option<ObjectProperties>>;
+pub type Edge = ::graph::Edge<()>;
 
 mod property;
 
@@ -156,9 +159,9 @@ fn traverse_connections<R: Read>(context: &mut Context<R>) {
 }
 
 pub fn create_object_node(obj_props: &ObjectProperties) -> Node {
-    let mut node = Node::new(obj_props.uid);
+    let mut node = Node::new_with_data(obj_props.uid, Some(obj_props.clone()));
     let label = format!("{}::{}\\n{}\\n{}", obj_props.class, obj_props.name, obj_props.subclass, obj_props.uid);
-    node.styles.push(format!("label=\"{}\"", label));
+    node.styles.insert("label".to_string(), label);
     node
 }
 

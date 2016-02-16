@@ -1,32 +1,32 @@
-use std::collections::HashMap;
+use std::collections::{HashSet, HashMap};
 use std::io::Write;
 use std::io;
 
 #[derive(Debug, Clone)]
-pub struct Graph {
+pub struct Graph<N: Clone, E: Clone> {
     pub name: String,
-    pub graph_styles: Vec<String>,
-    pub node_styles: Vec<String>,
-    pub nodes: HashMap<i64, Node>,
-    pub edges: Vec<Edge>,
+    pub graph_styles: HashMap<String, String>,
+    pub node_styles: HashMap<String, String>,
+    pub nodes: HashMap<i64, Node<N>>,
+    pub edges: Vec<Edge<E>>,
 }
 
-impl Graph {
+impl<N: Clone, E: Clone> Graph<N, E> {
     pub fn new<T: Into<String>>(name: T) -> Self {
         Graph {
             name: name.into(),
-            graph_styles: vec![],
-            node_styles: vec![],
+            graph_styles: Default::default(),
+            node_styles: Default::default(),
             nodes: Default::default(),
             edges: Default::default(),
         }
     }
 
-    pub fn add_node(&mut self, node: Node) -> Option<Node> {
+    pub fn add_node(&mut self, node: Node<N>) -> Option<Node<N>> {
         self.nodes.insert(node.id, node)
     }
 
-    pub fn add_edge(&mut self, edge: Edge) {
+    pub fn add_edge(&mut self, edge: Edge<E>) {
         self.edges.push(edge);
     }
 
@@ -69,11 +69,11 @@ impl Graph {
         if self.graph_styles.len() > 0 {
             let mut print_comma = false;
             try!(writeln!(out, "\tgraph ["));
-            for style in &self.graph_styles {
+            for (key, value) in &self.graph_styles {
                 if print_comma {
                     try!(write!(out, "\n, "));
                 }
-                try!(write!(out, "\t\t{}", style));
+                try!(write!(out, "\t\t{}=\"{}\"", style_escape(key), style_escape(value)));
                 print_comma = true;
             }
             try!(writeln!(out, "\n\t]"));
@@ -83,11 +83,11 @@ impl Graph {
         if self.node_styles.len() > 0 {
             let mut print_comma = false;
             try!(writeln!(out, "\tnode ["));
-            for style in &self.node_styles {
+            for (key, value) in &self.node_styles {
                 if print_comma {
                     try!(write!(out, "\n, "));
                 }
-                try!(write!(out, "\t\t{}", style));
+                try!(write!(out, "\t\t{}=\"{}\"", style_escape(key), style_escape(value)));
                 print_comma = true;
             }
             try!(writeln!(out, "\n\t]"));
@@ -102,18 +102,26 @@ impl Graph {
 }
 
 #[derive(Debug, Clone)]
-pub struct Node {
+pub struct Node<T: Clone> {
     pub id: i64,
     pub visible: bool,
-    pub styles: Vec<String>,
+    pub styles: HashMap<String, String>,
+    pub data: T,
 }
 
-impl Node {
+impl<T: Clone+Default> Node<T> {
     pub fn new(id: i64) -> Self {
+        Node::<T>::new_with_data(id, Default::default())
+    }
+}
+
+impl<T: Clone> Node<T> {
+    pub fn new_with_data(id: i64, data: T) -> Self {
         Node {
             id: id,
             visible: true,
-            styles: vec![],
+            styles: Default::default(),
+            data: data
         }
     }
 
@@ -122,11 +130,11 @@ impl Node {
         if self.styles.len() > 0 {
             let mut print_comma = false;
             try!(write!(out, " ["));
-            for style in &self.styles {
+            for (key, value) in &self.styles {
                 if print_comma {
                     try!(write!(out, ", "));
                 }
-                try!(write!(out, "{}", style));
+                try!(write!(out, "{}=\"{}\"", style_escape(key), style_escape(value)));
                 print_comma = true;
             }
             try!(write!(out, "]"));
@@ -141,18 +149,26 @@ impl Node {
 }
 
 #[derive(Debug, Clone)]
-pub struct Edge {
+pub struct Edge<T: Clone> {
     pub parent: i64,
     pub child: i64,
-    pub styles: Vec<String>,
+    pub styles: HashMap<String, String>,
+    pub data: T,
 }
 
-impl Edge {
+impl<T: Clone+Default> Edge<T> {
     pub fn new(parent: i64, child: i64) -> Self {
+        Edge::<T>::new_with_data(parent, child, Default::default())
+    }
+}
+
+impl<T: Clone> Edge<T> {
+    pub fn new_with_data(parent: i64, child: i64, data: T) -> Self {
         Edge {
             parent: parent,
             child: child,
-            styles: vec![],
+            styles: Default::default(),
+            data: data,
         }
     }
 
@@ -161,11 +177,11 @@ impl Edge {
         if self.styles.len() > 0 {
             let mut print_comma = false;
             try!(write!(out, " ["));
-            for style in &self.styles {
+            for (key, value) in &self.styles {
                 if print_comma {
                     try!(write!(out, ", "));
                 }
-                try!(write!(out, "{}", style));
+                try!(write!(out, "{}=\"{}\"", style_escape(key), style_escape(value)));
                 print_comma = true;
             }
             try!(write!(out, "]"));
@@ -173,4 +189,8 @@ impl Edge {
         try!(write!(out, "\n"));
         Ok(())
     }
+}
+
+fn style_escape(raw: &str) -> String {
+    raw.replace("\"", "\\\"")
 }
