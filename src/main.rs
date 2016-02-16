@@ -6,6 +6,8 @@ use std::fs::File;
 use std::io::{BufReader, BufWriter, Write};
 use docopt::Docopt;
 
+mod fbx;
+
 const USAGE: &'static str = "
 Visualize FBX objects dependency.
 
@@ -33,4 +35,9 @@ fn main() {
     } else {
         Box::new(::std::io::stdout()) as Box<Write>
     });
+
+    writeln!(out, "digraph \"{}\" {{", args.arg_fbx_name).unwrap();
+    writeln!(out, "\tnode [ shape=box ];").unwrap();
+    fbx::traverse(&mut out, &mut src);
+    writeln!(out, "}}").unwrap();
 }
