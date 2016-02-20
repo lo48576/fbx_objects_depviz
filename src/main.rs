@@ -56,7 +56,7 @@ fn main() {
             json::decode(&filter_json_str).unwrap()
         };
         filters.apply(&mut graph);
-        graph.output_visible_nodes(&mut out, false).unwrap();
+        graph.output_visible_nodes(&mut out, filters.show_implicit_nodes.unwrap_or(false)).unwrap();
     } else {
         graph.output_all(&mut out).unwrap();
     }

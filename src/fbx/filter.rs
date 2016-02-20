@@ -11,6 +11,7 @@ pub struct Filters {
     pub edge_operations: BTreeMap<String, Vec<EdgeOperation>>,
     pub node_filters: Vec<NodeFilter>,
     pub edge_filters: Vec<EdgeFilter>,
+    pub show_implicit_nodes: Option<bool>,
 }
 
 impl Filters {
