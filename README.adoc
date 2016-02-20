@@ -1,0 +1,38 @@
+= fbx_objects_depviz, FBX objects (nodes) dependency visualizer
+
+image:examples/models.dot.small.png[sample output]
+
+== About
+This is utility to visualize dependency of FBX objects.
+
+"Normal" users of FBX won't need this utility, but it may be useful for implementers of FBX loader library.
+
+== Usage
+[source]
+----
+cargo run -- <fbx_file> [--output=<dot_file>] [--filter=<json_file>]
+----
+
+This utility loads `fbx_file` and modify styles or visibility of nodes (if `json_file` is specified),
+and then puts dot file to `dot_file`.
+If `dot_file` is not specified, standard output is used.
+
+About dot files, see link:http://www.graphviz.org/[Graphviz | Graphviz - Graph Visualization Software] and
+link:http://www.graphviz.org/content/dot-language[This official document].
+
+For sample json files and their outputs, see `examples/` directory.
+
+== License
+
+Licensed under either of
+
+- Apache License, Version 2.0, (link:LICENSE-APACHE[] or http://www.apache.org/licenses/LICENSE-2.0)
+- MIT license (link:LICENSE-MIT[] or http://opensource.org/licenses/MIT)
+
+at your option.
+
+=== Contribution
+
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any
+additional terms or conditions.
