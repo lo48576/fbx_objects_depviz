@@ -1,0 +1,136 @@
+{
+	"graph_styles": {
+		"ranksep": "2.5"
+	},
+	"node_styles": {
+		"shape": "box"
+	},
+	"edge_styles": {
+	},
+	"node_operations": {
+		"deformer": [
+			{
+				"name": "update-attr",
+				"args": [
+					["style", "filled"],
+					["fillcolor", "#ffcccc"]
+				]
+			}
+		],
+		"geometry": [
+			{
+				"name": "update-attr",
+				"args": [
+					["style", "filled"],
+					["fillcolor", "#ccffcc"]
+				]
+			}
+		],
+		"model": [
+			{
+				"name": "update-attr",
+				"args": [
+					["style", "filled"],
+					["fillcolor", "#ccccff"]
+				]
+			}
+		],
+		"node-attribute": [
+			{
+				"name": "update-attr",
+				"args": [
+					["style", "filled"],
+					["fillcolor", "#99ffff"]
+				]
+			}
+		],
+		"show": [
+			{
+				"name": "show",
+				"args": [
+					["self"]
+				]
+			}
+		]
+	},
+	"edge_operations": {
+		"obj-prop-edge": [
+			{
+				"name": "update-attr",
+				"args": [
+					["color", "#0000ff"]
+				]
+			}
+		],
+		"pose": [
+			{
+				"name": "update-attr",
+				"args": [
+					["style", "dashed"]
+				]
+			}
+		],
+		"obj-to-prop": [
+			{
+				"name": "update-attr",
+				"args": [
+					["color", "#ff0000"]
+				]
+			}
+		]
+	},
+	"node_filters": [
+		{
+			"condition": {},
+			"operations": ["show"]
+		},
+		{
+			"condition": {
+				"class": "^(?:Sub)?Deformer$"
+			},
+			"operations": ["deformer"]
+		},
+		{
+			"condition": {
+				"class": "^Model$"
+			},
+			"operations": ["model"]
+		},
+		{
+			"condition": {
+				"class": "^Geometry$"
+			},
+			"operations": ["geometry"]
+		},
+		{
+			"condition": {
+				"class": "^NodeAttribute$"
+			},
+			"operations": ["node-attribute"]
+		},
+		{
+			"condition": {
+				"class": "^Pose$"
+			},
+			"operations": ["pose"]
+		}
+	],
+	"edge_filters": [
+		{
+			"condition": {
+				"src_condition": {
+					"class": "Pose"
+				},
+				"connection_type": "^Pose$"
+			},
+			"operations": ["pose"]
+		},
+		{
+			"condition": {
+				"connection_type": "^OP$"
+			},
+			"operations": ["obj-to-prop"]
+		}
+	],
+	"show_implicit_nodes": true
+}
