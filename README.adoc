@@ -36,3 +36,13 @@ at your option.
 Unless you explicitly state otherwise, any contribution intentionally submitted
 for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any
 additional terms or conditions.
+
+== Sample outputs
+Some of the images below are reduced.
+Raw sample outputs are in `examples/` directory.
+
+image:examples/texture-and-mesh.dot.png[Textures and meshes]
+
+image:examples/models.dot.small.png[Model nodes]
+
+image:examples/deformers.dot.small.png[Deformers]
