@@ -100,7 +100,7 @@ impl Filters {
         }
     }
 
-    fn apply_edge_operation(&self, edge: &mut Edge, _nodes: &mut HashMap<i64, Node>, ops: &Vec<String>) {
+    fn apply_edge_operation(&self, edge: &mut Edge, _nodes: &mut BTreeMap<i64, Node>, ops: &Vec<String>) {
         for ops in ops.iter().filter_map(|s| self.edge_operations.get(s)) {
             for op in ops {
                 match op.name.as_ref() {
@@ -278,7 +278,7 @@ pub struct CompiledEdgeFilterCondition {
 }
 
 impl CompiledEdgeFilterCondition {
-    pub fn is_match(&self, edge: &Edge, nodes: &HashMap<i64, Node>) -> bool {
+    pub fn is_match(&self, edge: &Edge, nodes: &BTreeMap<i64, Node>) -> bool {
         if let Some(ref cond) = self.src_condition {
             if let Some(src) = nodes.get(&edge.parent) {
                 if !cond.is_match(src) {

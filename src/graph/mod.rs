@@ -1,4 +1,4 @@
-use std::collections::{HashSet, HashMap};
+use std::collections::{HashSet, HashMap, BTreeMap};
 use std::io::Write;
 use std::io;
 
@@ -8,7 +8,7 @@ pub struct Graph<N: Clone, E: Clone> {
     pub graph_styles: HashMap<String, String>,
     pub node_styles: HashMap<String, String>,
     pub edge_styles: HashMap<String, String>,
-    pub nodes: HashMap<i64, Node<N>>,
+    pub nodes: BTreeMap<i64, Node<N>>,
     pub edges: Vec<Edge<E>>,
 }
 
