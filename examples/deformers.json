@@ -1,0 +1,179 @@
+{
+	"graph_styles": {
+		"ranksep": "1.0",
+		"rankdir": "LR"
+	},
+	"node_styles": {
+		"shape": "box"
+	},
+	"edge_styles": {
+	},
+	"node_operations": {
+		"deformer": [
+			{
+				"name": "update-attr",
+				"args": [
+					["style", "filled"],
+					["fillcolor", "#ffcccc"]
+				]
+			},
+			{
+				"name": "show",
+				"args": [
+					["self", "ascendant"]
+				]
+			}
+		],
+		"subdeformer": [
+			{
+				"name": "update-attr",
+				"args": [
+					["style", "filled"],
+					["fillcolor", "#ff9999"]
+				]
+			},
+			{
+				"name": "show",
+				"args": [
+					["self", "ascendant"]
+				]
+			}
+		],
+		"geometry-mesh": [
+			{
+				"name": "update-attr",
+				"args": [
+					["style", "filled"],
+					["fillcolor", "#ccccff"]
+				]
+			},
+			{
+				"name": "show",
+				"args": [
+					["self", "ascendant"]
+				]
+			}
+		],
+		"generic-model": [
+			{
+				"name": "update-attr",
+				"args": [
+					["style", "filled"],
+					["fillcolor", "#99ff99"]
+				]
+			}
+		],
+		"model-mesh": [
+			{
+				"name": "update-attr",
+				"args": [
+					["style", "filled"],
+					["fillcolor", "#ccffcc"]
+				]
+			},
+			{
+				"name": "show",
+				"args": [
+					["self", "ascendant"]
+				]
+			}
+		],
+		"show": [
+			{
+				"name": "show",
+				"args": [
+					["self"]
+				]
+			}
+		],
+		"hide": [
+			{
+				"name": "hide",
+				"args": [
+					["self"]
+				]
+			}
+		]
+	},
+	"edge_operations": {
+		"obj-prop-edge": [
+			{
+				"name": "update-attr",
+				"args": [
+					["color", "#0000ff"]
+				]
+			}
+		],
+		"pose": [
+			{
+				"name": "update-attr",
+				"args": [
+					["style", "dashed"]
+				]
+			}
+		],
+		"obj-to-prop": [
+			{
+				"name": "update-attr",
+				"args": [
+					["color", "#ff0000"]
+				]
+			}
+		]
+	},
+	"node_filters": [
+		{
+			"condition": {},
+			"operations": ["hide"]
+		},
+		{
+			"condition": {
+				"class": "^Deformer$"
+			},
+			"operations": ["deformer"]
+		},
+		{
+			"condition": {
+				"class": "^SubDeformer$"
+			},
+			"operations": ["subdeformer"]
+		},
+		{
+			"condition": {
+				"class": "^Model$"
+			},
+			"operations": ["generic-model"]
+		},
+		{
+			"condition": {
+				"class": "^Geometry$",
+				"subclass": "^Mesh$"
+			},
+			"operations": ["geometry-mesh"]
+		},
+		{
+			"condition": {
+				"class": "^Model$",
+				"subclass": "^Mesh$"
+			},
+			"operations": ["model-mesh"]
+		}
+	],
+	"edge_filters": [
+		{
+			"condition": {
+				"src_condition": {
+					"class": "Pose"
+				},
+				"connection_type": "^Pose$"
+			},
+			"operations": ["pose"]
+		},
+		{
+			"condition": {
+				"connection_type": "^OP$"
+			},
+			"operations": ["obj-to-prop"]
+		}
+	]
+}

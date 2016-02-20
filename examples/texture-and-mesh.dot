@@ -1,0 +1,79 @@
+digraph "../testfiles/naka.fbx" {
+	graph [
+		ranksep="1.0"
+	]
+	node [
+		shape="box"
+	]
+	0
+	942769200256 [style="filled", label="Texture::file1\n\n942769200256", fillcolor="#ffcccc"]
+	942769202656 [fillcolor="#ffcccc", label="Texture::sisA_13_MODELONLY_polySurface82SG1_Flattened_Diffuse\n\n942769202656", style="filled"]
+	943168388352 [style="filled", fillcolor="#ffcccc", label="Material::naka_face_shd\n\n943168388352"]
+	943168397152 [style="filled", fillcolor="#ffcccc", label="Material::naka_cloth_shd\n\n943168397152"]
+	943168398352 [label="Material::naka_hair_sjd\n\n943168398352", fillcolor="#ffcccc", style="filled"]
+	943168398752 [style="filled", label="Material::naka_eye_shd\n\n943168398752", fillcolor="#ffcccc"]
+	943168399152 [style="filled", label="Material::naka_nose_shd\n\n943168399152", fillcolor="#ffcccc"]
+	943168405952 [fillcolor="#ffcccc", style="filled", label="Material::lambert1\n\n943168405952"]
+	943272664320 [style="filled", fillcolor="#ccffcc", label="Model::model_line\nMesh\n943272664320"]
+	943272671280 [label="Model::model_brow\nMesh\n943272671280", style="filled", fillcolor="#ccffcc"]
+	943272673600 [label="Model::model_hair\nMesh\n943272673600", fillcolor="#ccffcc", style="filled"]
+	943272675920 [fillcolor="#ccffcc", style="filled", label="Model::model_Headdress\nMesh\n943272675920"]
+	943272678240 [label="Model::model\nNull\n943272678240"]
+	943272680560 [label="Model::model_ribbon\nMesh\n943272680560", fillcolor="#ccffcc", style="filled"]
+	943272682880 [label="Model::model_eyeball\nMesh\n943272682880", fillcolor="#ccffcc", style="filled"]
+	943272687520 [label="Model::model_body\nMesh\n943272687520", style="filled", fillcolor="#ccffcc"]
+	943272689840 [fillcolor="#ccffcc", label="Model::model_face\nMesh\n943272689840", style="filled"]
+	943273824768 [label="Model::Naka\nNull\n943273824768"]
+	943386100880 [label="Geometry::\nMesh\n943386100880", style="filled", fillcolor="#ccccff"]
+	943386103440 [fillcolor="#ccccff", label="Geometry::\nMesh\n943386103440", style="filled"]
+	943386105488 [label="Geometry::\nMesh\n943386105488", style="filled", fillcolor="#ccccff"]
+	943386109584 [style="filled", fillcolor="#ccccff", label="Geometry::\nMesh\n943386109584"]
+	943386111632 [label="Geometry::\nMesh\n943386111632", fillcolor="#ccccff", style="filled"]
+	943386112144 [fillcolor="#ccccff", label="Geometry::\nMesh\n943386112144", style="filled"]
+	943386113168 [label="Geometry::\nMesh\n943386113168", fillcolor="#ccccff", style="filled"]
+	943386116240 [label="Geometry::\nMesh\n943386116240", fillcolor="#ccccff", style="filled"]
+	943410809552 [label="DisplayLayer::meshLayer\nDisplayLayer\n943410809552"]
+	943431541648 [label="Video::sisA_13_MODELONLY_file3\nClip\n943431541648"]
+	943431542448 [label="Video::sisA_13_MODELONLY_polySurface82SG1_Flattened_Diffuse\nClip\n943431542448"]
+	943431543248 [label="Video::file1\nClip\n943431543248"]
+	943431546448 [label="Video::ex1:file5\nClip\n943431546448"]
+	944753239328 [style="filled", label="Texture::sisA_13_MODELONLY_file3\n\n944753239328", fillcolor="#ffcccc"]
+	944753240768 [label="Texture::ex1:file5\n\n944753240768", fillcolor="#ffcccc", style="filled"]
+	0 -> 943273824768
+	943273824768 -> 943272678240
+	943272678240 -> 943272671280
+	943272678240 -> 943272664320
+	943272678240 -> 943272675920
+	943272678240 -> 943272680560
+	943272678240 -> 943272673600
+	943272678240 -> 943272687520
+	943272678240 -> 943272689840
+	943272678240 -> 943272682880
+	943168388352 -> 944753240768 [color="#ff0000", label="DiffuseColor"]
+	944753240768 -> 943431546448
+	943272671280 -> 943386116240
+	943272671280 -> 943168388352
+	943272664320 -> 943386109584
+	943272664320 -> 943168399152
+	943168397152 -> 944753239328 [color="#ff0000", label="DiffuseColor"]
+	944753239328 -> 943431541648
+	943272675920 -> 943386111632
+	943272675920 -> 943168397152
+	943272680560 -> 943386105488
+	943272680560 -> 943168397152
+	943168398352 -> 942769202656 [label="DiffuseColor", color="#ff0000"]
+	942769202656 -> 943431542448
+	943272673600 -> 943386112144
+	943272673600 -> 943168398352
+	943272687520 -> 943386103440
+	943272687520 -> 943168388352
+	943272687520 -> 943168397152
+	943272689840 -> 943386100880
+	943272689840 -> 943168388352
+	943168398752 -> 942769200256 [label="DiffuseColor", color="#ff0000"]
+	943168398752 -> 942769200256 [color="#ff0000", label="TransparentColor"]
+	942769200256 -> 943431543248
+	943272682880 -> 943386113168
+	943272682880 -> 943168398752
+	943410809552 -> 943272678240
+}

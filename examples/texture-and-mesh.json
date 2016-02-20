@@ -1,0 +1,155 @@
+{
+	"graph_styles": {
+		"ranksep": "1.0"
+	},
+	"node_styles": {
+		"shape": "box"
+	},
+	"edge_styles": {
+	},
+	"node_operations": {
+		"geometry-mesh": [
+			{
+				"name": "update-attr",
+				"args": [
+					["style", "filled"],
+					["fillcolor", "#ccccff"]
+				]
+			},
+			{
+				"name": "show",
+				"args": [
+					["self", "ascendant"]
+				]
+			}
+		],
+		"model-mesh": [
+			{
+				"name": "update-attr",
+				"args": [
+					["style", "filled"],
+					["fillcolor", "#ccffcc"]
+				]
+			},
+			{
+				"name": "show",
+				"args": [
+					["self", "ascendant"]
+				]
+			}
+		],
+		"material-and-texture": [
+			{
+				"name": "update-attr",
+				"args": [
+					["style", "filled"],
+					["fillcolor", "#ffcccc"]
+				]
+			},
+			{
+				"name": "show",
+				"args": [
+					["self", "ascendant"]
+				]
+			}
+		],
+		"show": [
+			{
+				"name": "show",
+				"args": [
+					["self"]
+				]
+			}
+		],
+		"hide": [
+			{
+				"name": "hide",
+				"args": [
+					["self"]
+				]
+			}
+		]
+	},
+	"edge_operations": {
+		"obj-prop-edge": [
+			{
+				"name": "update-attr",
+				"args": [
+					["color", "#0000ff"]
+				]
+			}
+		],
+		"pose": [
+			{
+				"name": "update-attr",
+				"args": [
+					["style", "dashed"]
+				]
+			}
+		],
+		"obj-to-prop": [
+			{
+				"name": "update-attr",
+				"args": [
+					["color", "#ff0000"]
+				]
+			}
+		]
+	},
+	"node_filters": [
+		{
+			"condition": {},
+			"operations": ["hide"]
+		},
+		{
+			"condition": {
+				"class": "^Geometry$",
+				"subclass": "^Mesh$"
+			},
+			"operations": ["geometry-mesh"]
+		},
+		{
+			"condition": {
+				"class": "^Model$",
+				"subclass": "^Mesh$"
+			},
+			"operations": ["model-mesh"]
+		},
+		{
+			"condition": {
+				"class": "^(Texture|Material)$"
+			},
+			"operations": ["material-and-texture"]
+		},
+		{
+			"condition": {
+				"class": "^Video$",
+				"subclass": "^Clip$"
+			},
+			"operations": ["show"]
+		},
+		{
+			"condition": {
+				"class": "^Pose$"
+			},
+			"operations": ["hide"]
+		}
+	],
+	"edge_filters": [
+		{
+			"condition": {
+				"src_condition": {
+					"class": "Pose"
+				},
+				"connection_type": "^Pose$"
+			},
+			"operations": ["pose"]
+		},
+		{
+			"condition": {
+				"connection_type": "^OP$"
+			},
+			"operations": ["obj-to-prop"]
+		}
+	]
+}

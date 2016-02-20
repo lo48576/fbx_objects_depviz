@@ -1,0 +1,760 @@
+digraph "../testfiles/naka.fbx" {
+	graph [
+		ranksep="1.0"
+	]
+	node [
+		shape="box"
+	]
+	0
+	942771111408 [label="SubDeformer::\nCluster\n942771111408", style="filled", fillcolor="#ffcccc"]
+	942771112160 [style="filled", label="SubDeformer::\nCluster\n942771112160", fillcolor="#ffcccc"]
+	942771113664 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n942771113664", style="filled"]
+	942771117424 [label="SubDeformer::\nCluster\n942771117424", fillcolor="#ffcccc", style="filled"]
+	942771118176 [label="SubDeformer::\nCluster\n942771118176", fillcolor="#ffcccc", style="filled"]
+	943070463728 [label="SubDeformer::\nCluster\n943070463728", fillcolor="#ffcccc", style="filled"]
+	943070464480 [style="filled", label="SubDeformer::\nCluster\n943070464480", fillcolor="#ffcccc"]
+	943070465232 [style="filled", label="SubDeformer::\nCluster\n943070465232", fillcolor="#ffcccc"]
+	943070465984 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943070465984", style="filled"]
+	943070466736 [label="SubDeformer::\nCluster\n943070466736", fillcolor="#ffcccc", style="filled"]
+	943070467488 [style="filled", label="SubDeformer::\nCluster\n943070467488", fillcolor="#ffcccc"]
+	943070468240 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943070468240", style="filled"]
+	943070468992 [label="SubDeformer::\nCluster\n943070468992", fillcolor="#ffcccc", style="filled"]
+	943070469744 [style="filled", label="SubDeformer::\nCluster\n943070469744", fillcolor="#ffcccc"]
+	943070470496 [label="SubDeformer::\nCluster\n943070470496", style="filled", fillcolor="#ffcccc"]
+	943070471248 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943070471248"]
+	943070472000 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943070472000", style="filled"]
+	943070472752 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943070472752"]
+	943070473504 [style="filled", label="SubDeformer::\nCluster\n943070473504", fillcolor="#ffcccc"]
+	943070474256 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943070474256", style="filled"]
+	943070475008 [label="SubDeformer::\nCluster\n943070475008", fillcolor="#ffcccc", style="filled"]
+	943070475760 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943070475760"]
+	943070476512 [style="filled", label="SubDeformer::\nCluster\n943070476512", fillcolor="#ffcccc"]
+	943070477264 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943070477264", style="filled"]
+	943070478016 [label="SubDeformer::\nCluster\n943070478016", style="filled", fillcolor="#ffcccc"]
+	943070478768 [style="filled", label="SubDeformer::\nCluster\n943070478768", fillcolor="#ffcccc"]
+	943135889168 [fillcolor="#ffcccc", style="filled", label="SubDeformer::\nCluster\n943135889168"]
+	943135889920 [style="filled", label="SubDeformer::\nCluster\n943135889920", fillcolor="#ffcccc"]
+	943135890672 [fillcolor="#ffcccc", style="filled", label="SubDeformer::\nCluster\n943135890672"]
+	943135891424 [style="filled", label="SubDeformer::\nCluster\n943135891424", fillcolor="#ffcccc"]
+	943135892176 [style="filled", label="SubDeformer::\nCluster\n943135892176", fillcolor="#ffcccc"]
+	943135892928 [style="filled", label="SubDeformer::\nCluster\n943135892928", fillcolor="#ffcccc"]
+	943135893680 [label="SubDeformer::\nCluster\n943135893680", style="filled", fillcolor="#ffcccc"]
+	943135894432 [label="SubDeformer::\nCluster\n943135894432", fillcolor="#ffcccc", style="filled"]
+	943135895184 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943135895184", style="filled"]
+	943135895936 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943135895936"]
+	943135896688 [label="SubDeformer::\nCluster\n943135896688", style="filled", fillcolor="#ffcccc"]
+	943135897440 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943135897440", style="filled"]
+	943135898192 [label="SubDeformer::\nCluster\n943135898192", style="filled", fillcolor="#ffcccc"]
+	943135898944 [style="filled", label="SubDeformer::\nCluster\n943135898944", fillcolor="#ffcccc"]
+	943135899696 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943135899696"]
+	943135900448 [fillcolor="#ffcccc", style="filled", label="SubDeformer::\nCluster\n943135900448"]
+	943135901200 [style="filled", label="SubDeformer::\nCluster\n943135901200", fillcolor="#ffcccc"]
+	943135901952 [label="SubDeformer::\nCluster\n943135901952", fillcolor="#ffcccc", style="filled"]
+	943135902704 [label="SubDeformer::\nCluster\n943135902704", style="filled", fillcolor="#ffcccc"]
+	943135903456 [label="SubDeformer::\nCluster\n943135903456", style="filled", fillcolor="#ffcccc"]
+	943135904208 [fillcolor="#ffcccc", style="filled", label="SubDeformer::\nCluster\n943135904208"]
+	943161528256 [fillcolor="#ffcccc", style="filled", label="SubDeformer::\nCluster\n943161528256"]
+	943161529008 [style="filled", label="SubDeformer::\nCluster\n943161529008", fillcolor="#ffcccc"]
+	943161529760 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943161529760"]
+	943161530512 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943161530512"]
+	943161532768 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943161532768"]
+	943161533520 [label="SubDeformer::\nCluster\n943161533520", fillcolor="#ffcccc", style="filled"]
+	943161534272 [style="filled", label="SubDeformer::\nCluster\n943161534272", fillcolor="#ffcccc"]
+	943161535024 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943161535024"]
+	943161536528 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943161536528", style="filled"]
+	943161537280 [fillcolor="#ffcccc", style="filled", label="SubDeformer::\nCluster\n943161537280"]
+	943161538032 [fillcolor="#ffcccc", style="filled", label="SubDeformer::\nCluster\n943161538032"]
+	943161538784 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943161538784", style="filled"]
+	943161539536 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943161539536"]
+	943161541040 [fillcolor="#ffcccc", style="filled", label="SubDeformer::\nCluster\n943161541040"]
+	943161541792 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943161541792", style="filled"]
+	943161542544 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943161542544", style="filled"]
+	943164949328 [label="SubDeformer::\nCluster\n943164949328", fillcolor="#ffcccc", style="filled"]
+	943164950080 [label="SubDeformer::\nCluster\n943164950080", fillcolor="#ffcccc", style="filled"]
+	943164950832 [label="SubDeformer::\nCluster\n943164950832", fillcolor="#ffcccc", style="filled"]
+	943164951584 [label="SubDeformer::\nCluster\n943164951584", fillcolor="#ffcccc", style="filled"]
+	943164954592 [label="SubDeformer::\nCluster\n943164954592", style="filled", fillcolor="#ffcccc"]
+	943164956096 [label="SubDeformer::\nCluster\n943164956096", style="filled", fillcolor="#ffcccc"]
+	943164957600 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943164957600", style="filled"]
+	943164958352 [label="SubDeformer::\nCluster\n943164958352", style="filled", fillcolor="#ffcccc"]
+	943164959104 [style="filled", label="SubDeformer::\nCluster\n943164959104", fillcolor="#ffcccc"]
+	943164959856 [label="SubDeformer::\nCluster\n943164959856", fillcolor="#ffcccc", style="filled"]
+	943164960608 [style="filled", label="SubDeformer::\nCluster\n943164960608", fillcolor="#ffcccc"]
+	943164961360 [label="SubDeformer::\nCluster\n943164961360", style="filled", fillcolor="#ffcccc"]
+	943164962112 [style="filled", label="SubDeformer::\nCluster\n943164962112", fillcolor="#ffcccc"]
+	943164965072 [style="filled", label="SubDeformer::\nCluster\n943164965072", fillcolor="#ffcccc"]
+	943164965824 [label="SubDeformer::\nCluster\n943164965824", fillcolor="#ffcccc", style="filled"]
+	943164966576 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943164966576"]
+	943164967328 [fillcolor="#ffcccc", style="filled", label="SubDeformer::\nCluster\n943164967328"]
+	943164968080 [label="SubDeformer::\nCluster\n943164968080", fillcolor="#ffcccc", style="filled"]
+	943164968832 [label="SubDeformer::\nCluster\n943164968832", style="filled", fillcolor="#ffcccc"]
+	943164969584 [label="SubDeformer::\nCluster\n943164969584", fillcolor="#ffcccc", style="filled"]
+	943164970336 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943164970336", style="filled"]
+	943164971088 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943164971088", style="filled"]
+	943164971840 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943164971840", style="filled"]
+	943164972592 [fillcolor="#ffcccc", style="filled", label="SubDeformer::\nCluster\n943164972592"]
+	943164973344 [style="filled", label="SubDeformer::\nCluster\n943164973344", fillcolor="#ffcccc"]
+	943164974096 [label="SubDeformer::\nCluster\n943164974096", style="filled", fillcolor="#ffcccc"]
+	943164974848 [label="SubDeformer::\nCluster\n943164974848", style="filled", fillcolor="#ffcccc"]
+	943164975600 [style="filled", label="SubDeformer::\nCluster\n943164975600", fillcolor="#ffcccc"]
+	943164976352 [style="filled", label="SubDeformer::\nCluster\n943164976352", fillcolor="#ffcccc"]
+	943164977104 [label="SubDeformer::\nCluster\n943164977104", fillcolor="#ffcccc", style="filled"]
+	943164977856 [fillcolor="#ffcccc", style="filled", label="SubDeformer::\nCluster\n943164977856"]
+	943164978608 [label="SubDeformer::\nCluster\n943164978608", style="filled", fillcolor="#ffcccc"]
+	943164979360 [style="filled", label="SubDeformer::\nCluster\n943164979360", fillcolor="#ffcccc"]
+	943164980112 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943164980112"]
+	943272664320 [label="Model::model_line\nMesh\n943272664320", style="filled", fillcolor="#ccffcc"]
+	943272666640 [label="Model::GlobalAllRot_loc_L\nNull\n943272666640", style="filled", fillcolor="#99ff99"]
+	943272668960 [label="Model::GlobalAllRot_loc_R\nNull\n943272668960", style="filled", fillcolor="#99ff99"]
+	943272671280 [label="Model::model_brow\nMesh\n943272671280", fillcolor="#ccffcc", style="filled"]
+	943272673600 [fillcolor="#ccffcc", label="Model::model_hair\nMesh\n943272673600", style="filled"]
+	943272675920 [style="filled", label="Model::model_Headdress\nMesh\n943272675920", fillcolor="#ccffcc"]
+	943272678240 [style="filled", label="Model::model\nNull\n943272678240", fillcolor="#99ff99"]
+	943272680560 [style="filled", fillcolor="#ccffcc", label="Model::model_ribbon\nMesh\n943272680560"]
+	943272682880 [style="filled", label="Model::model_eyeball\nMesh\n943272682880", fillcolor="#ccffcc"]
+	943272687520 [style="filled", label="Model::model_body\nMesh\n943272687520", fillcolor="#ccffcc"]
+	943272689840 [style="filled", fillcolor="#ccffcc", label="Model::model_face\nMesh\n943272689840"]
+	943272692160 [label="Model::eyeBall_blendshape_grp\nNull\n943272692160", fillcolor="#99ff99", style="filled"]
+	943272694480 [style="filled", label="Model::mouth_blendshape_grp\nNull\n943272694480", fillcolor="#99ff99"]
+	943272696800 [fillcolor="#99ff99", label="Model::Blendshape_grp\nNull\n943272696800", style="filled"]
+	943272699120 [style="filled", label="Model::eyes_blendshape_grp\nNull\n943272699120", fillcolor="#99ff99"]
+	943273810848 [label="Model::MasterController_grp\nNull\n943273810848", fillcolor="#99ff99", style="filled"]
+	943273824768 [label="Model::Naka\nNull\n943273824768", fillcolor="#99ff99", style="filled"]
+	943273827088 [fillcolor="#99ff99", label="Model::ForeArmTwist_ng_L_grp\nNull\n943273827088", style="filled"]
+	943273829408 [label="Model::ForeArmTwist_ng_R_grp\nNull\n943273829408", style="filled", fillcolor="#99ff99"]
+	943273831728 [style="filled", fillcolor="#99ff99", label="Model::ForeArmTwist_nullGrp\nNull\n943273831728"]
+	943273834048 [fillcolor="#aaaaff", style="filled", label="Model::Hip_bind\nLimbNode\n943273834048"]
+	943273836368 [fillcolor="#aaaaff", label="Model::SkirtFrontA_bind\nLimbNode\n943273836368", style="filled"]
+	943273838688 [label="Model::Root_bind\nLimbNode\n943273838688", fillcolor="#aaaaff", style="filled"]
+	943273841008 [fillcolor="#99ff99", label="Model::DONOTTOUCH\nNull\n943273841008", style="filled"]
+	943273843328 [fillcolor="#99ff99", label="Model::ForeArmTwist_ng_L\nNull\n943273843328", style="filled"]
+	943273845648 [fillcolor="#99ff99", label="Model::SkinningJoints\nNull\n943273845648", style="filled"]
+	943273847968 [label="Model::ForeArmTwist_ng_R\nNull\n943273847968", style="filled", fillcolor="#99ff99"]
+	943273850288 [label="Model::SkirtB_R_end\nLimbNode\n943273850288", fillcolor="#aaaaff", style="filled"]
+	943273852608 [style="filled", label="Model::Hip_L_bind\nLimbNode\n943273852608", fillcolor="#aaaaff"]
+	943273854928 [fillcolor="#aaaaff", label="Model::SkirtB_L_end\nLimbNode\n943273854928", style="filled"]
+	943273857248 [fillcolor="#aaaaff", style="filled", label="Model::SkirtA_R_bind\nLimbNode\n943273857248"]
+	943273859568 [label="Model::SkirtA_L_bind\nLimbNode\n943273859568", style="filled", fillcolor="#aaaaff"]
+	943273861888 [fillcolor="#aaaaff", style="filled", label="Model::SkirtBackA_bind\nLimbNode\n943273861888"]
+	943273864208 [label="Model::SkirtFrontB_end\nLimbNode\n943273864208", style="filled", fillcolor="#aaaaff"]
+	943273866528 [label="Model::SkirtBackB_bind\nLimbNode\n943273866528", style="filled", fillcolor="#aaaaff"]
+	943273868848 [label="Model::KneeCapB_L_end\nLimbNode\n943273868848", style="filled", fillcolor="#aaaaff"]
+	943273871168 [fillcolor="#aaaaff", label="Model::Hip_R_bind\nLimbNode\n943273871168", style="filled"]
+	943273873488 [label="Model::KneeCapA_L_bind\nLimbNode\n943273873488", style="filled", fillcolor="#aaaaff"]
+	943273875808 [style="filled", label="Model::Toe_L_bind\nLimbNode\n943273875808", fillcolor="#aaaaff"]
+	943273878128 [label="Model::Foot_L_bind\nLimbNode\n943273878128", fillcolor="#aaaaff", style="filled"]
+	943273880448 [fillcolor="#aaaaff", label="Model::ToeEnd_L_end\nLimbNode\n943273880448", style="filled"]
+	943273882768 [label="Model::Knee_L_bind\nLimbNode\n943273882768", style="filled", fillcolor="#aaaaff"]
+	943273885088 [style="filled", fillcolor="#aaaaff", label="Model::HipTwist_L_bind\nLimbNode\n943273885088"]
+	943273887408 [label="Model::Toe_R_bind\nLimbNode\n943273887408", fillcolor="#aaaaff", style="filled"]
+	943273889728 [style="filled", fillcolor="#aaaaff", label="Model::Foot_R_bind\nLimbNode\n943273889728"]
+	943273892048 [style="filled", label="Model::Knee_R_bind\nLimbNode\n943273892048", fillcolor="#aaaaff"]
+	943273894368 [label="Model::Chest_bind\nLimbNode\n943273894368", style="filled", fillcolor="#aaaaff"]
+	943273896688 [label="Model::Neck_bind\nLimbNode\n943273896688", style="filled", fillcolor="#aaaaff"]
+	943273899008 [label="Model::KneeCapB_R_end\nLimbNode\n943273899008", fillcolor="#aaaaff", style="filled"]
+	943273901328 [label="Model::ToeEnd_R_end\nLimbNode\n943273901328", fillcolor="#aaaaff", style="filled"]
+	943273903648 [fillcolor="#aaaaff", label="Model::KneeCapA_R_bind\nLimbNode\n943273903648", style="filled"]
+	943273905968 [style="filled", fillcolor="#aaaaff", label="Model::HipTwist_R_bind\nLimbNode\n943273905968"]
+	943273908288 [style="filled", label="Model::Abs_bind\nLimbNode\n943273908288", fillcolor="#aaaaff"]
+	943273910608 [label="Model::NeckBase_bind\nLimbNode\n943273910608", style="filled", fillcolor="#aaaaff"]
+	943273912928 [style="filled", label="Model::DogEarA_R_bind\nLimbNode\n943273912928", fillcolor="#aaaaff"]
+	943273915248 [style="filled", label="Model::DogEarB_L_end\nLimbNode\n943273915248", fillcolor="#aaaaff"]
+	943273917568 [style="filled", fillcolor="#aaaaff", label="Model::HeadEarB_R_end\nLimbNode\n943273917568"]
+	943273919888 [label="Model::Head_bind\nLimbNode\n943273919888", style="filled", fillcolor="#aaaaff"]
+	943273924528 [fillcolor="#aaaaff", label="Model::HeadTop_bind\nLimbNode\n943273924528", style="filled"]
+	943273926848 [fillcolor="#aaaaff", style="filled", label="Model::DogEarA_L_bind\nLimbNode\n943273926848"]
+	943273929168 [style="filled", fillcolor="#aaaaff", label="Model::DogEarB_R_end\nLimbNode\n943273929168"]
+	943273931488 [style="filled", label="Model::HeadEarA_R_bind\nLimbNode\n943273931488", fillcolor="#aaaaff"]
+	943347531712 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943347531712"]
+	943347532464 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943347532464"]
+	943347533216 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943347533216"]
+	943347533968 [fillcolor="#ffcccc", style="filled", label="SubDeformer::\nCluster\n943347533968"]
+	943347534720 [label="SubDeformer::\nCluster\n943347534720", fillcolor="#ffcccc", style="filled"]
+	943347535472 [fillcolor="#ffcccc", style="filled", label="SubDeformer::\nCluster\n943347535472"]
+	943347536224 [label="SubDeformer::\nCluster\n943347536224", fillcolor="#ffcccc", style="filled"]
+	943347536976 [label="SubDeformer::\nCluster\n943347536976", style="filled", fillcolor="#ffcccc"]
+	943347537728 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943347537728", style="filled"]
+	943347538480 [style="filled", label="SubDeformer::\nCluster\n943347538480", fillcolor="#ffcccc"]
+	943347539232 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943347539232"]
+	943347539984 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943347539984", style="filled"]
+	943347540736 [label="SubDeformer::\nCluster\n943347540736", fillcolor="#ffcccc", style="filled"]
+	943347541488 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943347541488", style="filled"]
+	943347542240 [fillcolor="#ffcccc", style="filled", label="SubDeformer::\nCluster\n943347542240"]
+	943347542992 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943347542992"]
+	943347543744 [label="SubDeformer::\nCluster\n943347543744", fillcolor="#ffcccc", style="filled"]
+	943347544496 [label="SubDeformer::\nCluster\n943347544496", style="filled", fillcolor="#ffcccc"]
+	943347545248 [style="filled", fillcolor="#ffcccc", label="SubDeformer::\nCluster\n943347545248"]
+	943347546000 [label="SubDeformer::\nCluster\n943347546000", fillcolor="#ffcccc", style="filled"]
+	943347546752 [fillcolor="#ffcccc", style="filled", label="SubDeformer::\nCluster\n943347546752"]
+	943371485744 [fillcolor="#aaaaff", label="Model::Earing_L_bind\nLimbNode\n943371485744", style="filled"]
+	943371488064 [label="Model::Earing_R_bind\nLimbNode\n943371488064", style="filled", fillcolor="#aaaaff"]
+	943371490384 [style="filled", fillcolor="#aaaaff", label="Model::PonyTailD_R_bind\nLimbNode\n943371490384"]
+	943371492704 [style="filled", label="Model::PonyTailE_R_end\nLimbNode\n943371492704", fillcolor="#aaaaff"]
+	943371495024 [fillcolor="#aaaaff", label="Model::Earing_L_end\nLimbNode\n943371495024", style="filled"]
+	943371497344 [label="Model::Brow_all_grp\nNull\n943371497344", fillcolor="#99ff99", style="filled"]
+	943371499664 [label="Model::TeethTop_tj\nLimbNode\n943371499664", fillcolor="#aaaaff", style="filled"]
+	943371501984 [style="filled", fillcolor="#aaaaff", label="Model::Earing_R_end\nLimbNode\n943371501984"]
+	943371504304 [fillcolor="#aaaaff", style="filled", label="Model::ribbonA_L_bind\nLimbNode\n943371504304"]
+	943371506624 [style="filled", fillcolor="#aaaaff", label="Model::brow_N_R_fcl\nLimbNode\n943371506624"]
+	943371508944 [label="Model::brow_M_L_fcl\nLimbNode\n943371508944", fillcolor="#aaaaff", style="filled"]
+	943371511264 [fillcolor="#aaaaff", style="filled", label="Model::brow_N_L_fcl\nLimbNode\n943371511264"]
+	943371513584 [fillcolor="#aaaaff", style="filled", label="Model::brow_F_L_fcl\nLimbNode\n943371513584"]
+	943371515904 [label="Model::brow_M_R_fcl\nLimbNode\n943371515904", style="filled", fillcolor="#aaaaff"]
+	943371518224 [style="filled", fillcolor="#aaaaff", label="Model::brow_F_R_fcl\nLimbNode\n943371518224"]
+	943371520544 [style="filled", label="Model::ribbonB_L_end\nLimbNode\n943371520544", fillcolor="#aaaaff"]
+	943371522864 [label="Model::ForeArm_L_bind\nLimbNode\n943371522864", style="filled", fillcolor="#aaaaff"]
+	943371525184 [style="filled", label="Model::IndexA_L_bind\nLimbNode\n943371525184", fillcolor="#aaaaff"]
+	943371527504 [style="filled", label="Model::IndexC_L_bind\nLimbNode\n943371527504", fillcolor="#aaaaff"]
+	943371529824 [label="Model::ribbonA_R_bind\nLimbNode\n943371529824", style="filled", fillcolor="#aaaaff"]
+	943371532144 [style="filled", fillcolor="#aaaaff", label="Model::UpperArm_L_bind\nLimbNode\n943371532144"]
+	943371534464 [style="filled", fillcolor="#aaaaff", label="Model::Shoulder_L_bind\nLimbNode\n943371534464"]
+	943371536784 [style="filled", fillcolor="#aaaaff", label="Model::ribbonB_R_end\nLimbNode\n943371536784"]
+	943371539104 [style="filled", fillcolor="#aaaaff", label="Model::Hand_L_bind\nLimbNode\n943371539104"]
+	943371541424 [fillcolor="#aaaaff", style="filled", label="Model::IndexB_L_bind\nLimbNode\n943371541424"]
+	943371543744 [fillcolor="#aaaaff", style="filled", label="Model::IndexD_L_end\nLimbNode\n943371543744"]
+	943371546064 [label="Model::MiddleA_L_bind\nLimbNode\n943371546064", style="filled", fillcolor="#aaaaff"]
+	943371548384 [fillcolor="#aaaaff", label="Model::MiddleB_L_bind\nLimbNode\n943371548384", style="filled"]
+	943371550704 [fillcolor="#aaaaff", style="filled", label="Model::MiddleC_L_bind\nLimbNode\n943371550704"]
+	943379279968 [label="Model::Curl_L_bind\nLimbNode\n943379279968", style="filled", fillcolor="#aaaaff"]
+	943379282288 [label="Model::RingA_L_bind\nLimbNode\n943379282288", style="filled", fillcolor="#aaaaff"]
+	943379284608 [label="Model::PinkyB_L_bind\nLimbNode\n943379284608", fillcolor="#aaaaff", style="filled"]
+	943379286928 [style="filled", fillcolor="#aaaaff", label="Model::MiddleD_L_end\nLimbNode\n943379286928"]
+	943379289248 [fillcolor="#aaaaff", style="filled", label="Model::PinkyA_L_bind\nLimbNode\n943379289248"]
+	943379291568 [label="Model::ThumbB_L_bind\nLimbNode\n943379291568", style="filled", fillcolor="#aaaaff"]
+	943379293888 [label="Model::RingB_L_bind\nLimbNode\n943379293888", fillcolor="#aaaaff", style="filled"]
+	943379296208 [style="filled", label="Model::RingC_L_bind\nLimbNode\n943379296208", fillcolor="#aaaaff"]
+	943379298528 [label="Model::RingrD_L_end\nLimbNode\n943379298528", style="filled", fillcolor="#aaaaff"]
+	943379300848 [label="Model::PinkyC_L_bind\nLimbNode\n943379300848", style="filled", fillcolor="#aaaaff"]
+	943379303168 [style="filled", label="Model::PinkyD_L_end\nLimbNode\n943379303168", fillcolor="#aaaaff"]
+	943379305488 [fillcolor="#aaaaff", label="Model::ThumbA_L_bind\nLimbNode\n943379305488", style="filled"]
+	943379307808 [style="filled", fillcolor="#aaaaff", label="Model::ThumbC_L_bind\nLimbNode\n943379307808"]
+	943379310128 [fillcolor="#aaaaff", label="Model::ForeArmTwistA_L_bind\nLimbNode\n943379310128", style="filled"]
+	943379312448 [label="Model::Shoulder_R_bind\nLimbNode\n943379312448", fillcolor="#aaaaff", style="filled"]
+	943379314768 [style="filled", fillcolor="#aaaaff", label="Model::ElbowB_L_end\nLimbNode\n943379314768"]
+	943379317088 [style="filled", fillcolor="#aaaaff", label="Model::ForeArmTwistB_L_bind\nLimbNode\n943379317088"]
+	943379319408 [label="Model::ThumbD_L_end\nLimbNode\n943379319408", style="filled", fillcolor="#aaaaff"]
+	943379321728 [style="filled", label="Model::Loc_grp\nNull\n943379321728", fillcolor="#99ff99"]
+	943379324048 [label="Model::ElbowA_L_bind\nLimbNode\n943379324048", style="filled", fillcolor="#aaaaff"]
+	943379326368 [fillcolor="#aaaaff", label="Model::UpperArmTwist_L_bind\nLimbNode\n943379326368", style="filled"]
+	943379328688 [fillcolor="#aaaaff", style="filled", label="Model::IndexC_R_bind\nLimbNode\n943379328688"]
+	943379331008 [label="Model::IndexD_R_end\nLimbNode\n943379331008", style="filled", fillcolor="#aaaaff"]
+	943379333328 [style="filled", label="Model::UpperArm_R_bind\nLimbNode\n943379333328", fillcolor="#aaaaff"]
+	943379335648 [label="Model::ForeArm_R_bind\nLimbNode\n943379335648", fillcolor="#aaaaff", style="filled"]
+	943379337968 [fillcolor="#aaaaff", style="filled", label="Model::Hand_R_bind\nLimbNode\n943379337968"]
+	943379340288 [fillcolor="#aaaaff", style="filled", label="Model::IndexA_R_bind\nLimbNode\n943379340288"]
+	943379342608 [style="filled", label="Model::IndexB_R_bind\nLimbNode\n943379342608", fillcolor="#aaaaff"]
+	943386100880 [style="filled", label="Geometry::\nMesh\n943386100880", fillcolor="#ffffcc"]
+	943386103440 [fillcolor="#ffffcc", label="Geometry::\nMesh\n943386103440", style="filled"]
+	943386105488 [style="filled", fillcolor="#ffffcc", label="Geometry::\nMesh\n943386105488"]
+	943386109584 [fillcolor="#ffffcc", label="Geometry::\nMesh\n943386109584", style="filled"]
+	943386111632 [label="Geometry::\nMesh\n943386111632", fillcolor="#ffffcc", style="filled"]
+	943386112144 [style="filled", label="Geometry::\nMesh\n943386112144", fillcolor="#ffffcc"]
+	943386113168 [label="Geometry::\nMesh\n943386113168", fillcolor="#ffffcc", style="filled"]
+	943386116240 [label="Geometry::\nMesh\n943386116240", style="filled", fillcolor="#ffffcc"]
+	943410802832 [label="DisplayLayer::Controllers\nDisplayLayer\n943410802832"]
+	943410803024 [style="filled", label="Deformer::\nSkin\n943410803024", fillcolor="#ffcccc"]
+	943410806672 [style="filled", label="Deformer::\nSkin\n943410806672", fillcolor="#ffcccc"]
+	943410806864 [fillcolor="#ffcccc", style="filled", label="Deformer::\nSkin\n943410806864"]
+	943410809552 [label="DisplayLayer::meshLayer\nDisplayLayer\n943410809552"]
+	943410809936 [label="Deformer::\nSkin\n943410809936", fillcolor="#ffcccc", style="filled"]
+	943410810512 [style="filled", label="Deformer::\nSkin\n943410810512", fillcolor="#ffcccc"]
+	943410810896 [label="Deformer::\nSkin\n943410810896", style="filled", fillcolor="#ffcccc"]
+	943410811856 [style="filled", label="Deformer::\nSkin\n943410811856", fillcolor="#ffcccc"]
+	943410813392 [style="filled", label="Deformer::\nSkin\n943410813392", fillcolor="#ffcccc"]
+	943496359456 [fillcolor="#aaaaff", style="filled", label="Model::BangsA_R_bind\nLimbNode\n943496359456"]
+	943496361776 [fillcolor="#aaaaff", label="Model::HeadEarA_L_bind\nLimbNode\n943496361776", style="filled"]
+	943496364096 [style="filled", label="Model::sideBangB_L_end\nLimbNode\n943496364096", fillcolor="#aaaaff"]
+	943496366416 [label="Model::HeadEarB_L_end\nLimbNode\n943496366416", style="filled", fillcolor="#aaaaff"]
+	943496371056 [fillcolor="#aaaaff", style="filled", label="Model::BangsA_L_bind\nLimbNode\n943496371056"]
+	943496373376 [label="Model::BangsB_L_end\nLimbNode\n943496373376", style="filled", fillcolor="#aaaaff"]
+	943496375696 [label="Model::BangsB_R_end\nLimbNode\n943496375696", fillcolor="#aaaaff", style="filled"]
+	943496378016 [label="Model::sideBangA_L_bind\nLimbNode\n943496378016", fillcolor="#aaaaff", style="filled"]
+	943496380336 [label="Model::sideBangA_R_bind\nLimbNode\n943496380336", fillcolor="#aaaaff", style="filled"]
+	943496382656 [fillcolor="#aaaaff", label="Model::StrayHairE_L_bind\nLimbNode\n943496382656", style="filled"]
+	943496387296 [label="Model::sideBangB_R_end\nLimbNode\n943496387296", fillcolor="#aaaaff", style="filled"]
+	943496389616 [label="Model::StrayHairC_L_bind\nLimbNode\n943496389616", style="filled", fillcolor="#aaaaff"]
+	943496391936 [style="filled", fillcolor="#aaaaff", label="Model::StrayHairB_L_bind\nLimbNode\n943496391936"]
+	943496394256 [label="Model::StrayHairA_L_bind\nLimbNode\n943496394256", style="filled", fillcolor="#aaaaff"]
+	943496396576 [fillcolor="#aaaaff", style="filled", label="Model::StrayHairD_L_bind\nLimbNode\n943496396576"]
+	943496398896 [label="Model::StrayHairG_L_end\nLimbNode\n943496398896", style="filled", fillcolor="#aaaaff"]
+	943496401216 [label="Model::StrayHairD_R_bind\nLimbNode\n943496401216", style="filled", fillcolor="#aaaaff"]
+	943496403536 [style="filled", fillcolor="#aaaaff", label="Model::StrayHairF_R_bind1\nLimbNode\n943496403536"]
+	943496405856 [label="Model::StrayHairB_R_bind\nLimbNode\n943496405856", fillcolor="#aaaaff", style="filled"]
+	943496408176 [style="filled", fillcolor="#aaaaff", label="Model::StrayHairF_L_bind\nLimbNode\n943496408176"]
+	943496410496 [style="filled", label="Model::StrayHairC_R_bind\nLimbNode\n943496410496", fillcolor="#aaaaff"]
+	943496412816 [label="Model::StrayHairE_R_bind\nLimbNode\n943496412816", style="filled", fillcolor="#aaaaff"]
+	943496415136 [label="Model::StrayHairA_R_bind\nLimbNode\n943496415136", fillcolor="#aaaaff", style="filled"]
+	943496417456 [style="filled", fillcolor="#aaaaff", label="Model::StrayHairG_R_end\nLimbNode\n943496417456"]
+	943496419776 [label="Model::PonyTailA_L_bind\nLimbNode\n943496419776", style="filled", fillcolor="#aaaaff"]
+	943594492000 [label="Model::MiddleD_R_end\nLimbNode\n943594492000", style="filled", fillcolor="#aaaaff"]
+	943594494320 [fillcolor="#aaaaff", style="filled", label="Model::RingB_R_bind\nLimbNode\n943594494320"]
+	943594496640 [label="Model::RingA_R_bind\nLimbNode\n943594496640", style="filled", fillcolor="#aaaaff"]
+	943594498960 [label="Model::MiddleA_R_bind\nLimbNode\n943594498960", fillcolor="#aaaaff", style="filled"]
+	943594501280 [style="filled", fillcolor="#aaaaff", label="Model::Curl_R_bind\nLimbNode\n943594501280"]
+	943594503600 [style="filled", label="Model::MiddleB_R_bind\nLimbNode\n943594503600", fillcolor="#aaaaff"]
+	943594505920 [label="Model::MiddleC_R_bind\nLimbNode\n943594505920", style="filled", fillcolor="#aaaaff"]
+	943594508240 [fillcolor="#aaaaff", style="filled", label="Model::PinkyB_R_bind\nLimbNode\n943594508240"]
+	943594510560 [fillcolor="#aaaaff", label="Model::RingC_R_bind\nLimbNode\n943594510560", style="filled"]
+	943594512880 [label="Model::RingrD_R_end\nLimbNode\n943594512880", style="filled", fillcolor="#aaaaff"]
+	943594515200 [fillcolor="#aaaaff", style="filled", label="Model::ThumbA_R_bind\nLimbNode\n943594515200"]
+	943594517520 [fillcolor="#aaaaff", label="Model::ThumbC_R_bind\nLimbNode\n943594517520", style="filled"]
+	943594519840 [fillcolor="#aaaaff", style="filled", label="Model::ThumbD_R_end\nLimbNode\n943594519840"]
+	943594522160 [style="filled", fillcolor="#aaaaff", label="Model::PinkyA_R_bind\nLimbNode\n943594522160"]
+	943594524480 [label="Model::ForeArmTwistB_R_bind\nLimbNode\n943594524480", style="filled", fillcolor="#aaaaff"]
+	943594526800 [style="filled", fillcolor="#aaaaff", label="Model::PinkyD_R_end\nLimbNode\n943594526800"]
+	943594529120 [fillcolor="#aaaaff", label="Model::PinkyC_R_bind\nLimbNode\n943594529120", style="filled"]
+	943594531440 [fillcolor="#aaaaff", label="Model::ThumbB_R_bind\nLimbNode\n943594531440", style="filled"]
+	943594533760 [fillcolor="#aaaaff", style="filled", label="Model::ElbowA_R_bind\nLimbNode\n943594533760"]
+	943594536080 [label="Model::ElbowB_R_end\nLimbNode\n943594536080", fillcolor="#aaaaff", style="filled"]
+	943594538400 [fillcolor="#aaaaff", label="Model::ForeArmTwistA_R_bind\nLimbNode\n943594538400", style="filled"]
+	943594540720 [style="filled", fillcolor="#aaaaff", label="Model::BreastB_L_end\nLimbNode\n943594540720"]
+	943594543040 [fillcolor="#99ff99", style="filled", label="Model::Brow_key_node\nNull\n943594543040"]
+	943594545360 [label="Model::Facial_Node_grps\nNull\n943594545360", fillcolor="#99ff99", style="filled"]
+	943594547680 [label="Model::BreastA_L_bind\nLimbNode\n943594547680", fillcolor="#aaaaff", style="filled"]
+	943594550000 [label="Model::BreastA_R_bind\nLimbNode\n943594550000", style="filled", fillcolor="#aaaaff"]
+	943594552320 [label="Model::BreastB_R_end\nLimbNode\n943594552320", fillcolor="#aaaaff", style="filled"]
+	943594554640 [label="Model::UpperArmTwist_R_bind\nLimbNode\n943594554640", style="filled", fillcolor="#aaaaff"]
+	944173959424 [style="filled", fillcolor="#aaaaff", label="Model::PonyTailC_R_bind\nLimbNode\n944173959424"]
+	944747923504 [fillcolor="#ffcccc", label="SubDeformer::\nCluster\n944747923504", style="filled"]
+	944758759776 [label="Model::PonyTailC_L_bind\nLimbNode\n944758759776", fillcolor="#aaaaff", style="filled"]
+	944758766736 [label="Model::PonyTailA_R_bind\nLimbNode\n944758766736", fillcolor="#aaaaff", style="filled"]
+	944758769056 [fillcolor="#aaaaff", label="Model::PonyTaiB_L_bind\nLimbNode\n944758769056", style="filled"]
+	944758771376 [label="Model::PonyTailD_L_bind\nLimbNode\n944758771376", style="filled", fillcolor="#aaaaff"]
+	944758780656 [label="Model::PonyTailE_L_end\nLimbNode\n944758780656", style="filled", fillcolor="#aaaaff"]
+	944758785296 [style="filled", fillcolor="#aaaaff", label="Model::PonyTaiB_R_bind\nLimbNode\n944758785296"]
+	0 -> 943273824768
+	943273824768 -> 943273810848
+	943273824768 -> 943272678240
+	943273810848 -> 943273841008
+	943273810848 -> 943379321728
+	943273841008 -> 943273831728
+	943273841008 -> 943273845648
+	943273841008 -> 943594545360
+	943273831728 -> 943273827088
+	943273831728 -> 943273829408
+	943273827088 -> 943273843328
+	943273829408 -> 943273847968
+	943273845648 -> 943273838688
+	943273838688 -> 943273834048
+	943273838688 -> 943273908288
+	943273834048 -> 943273836368
+	943273834048 -> 943273857248
+	943273834048 -> 943273859568
+	943273834048 -> 943273861888
+	943273834048 -> 943273852608
+	943273834048 -> 943273871168
+	943273836368 -> 943273864208
+	943273857248 -> 943273850288
+	943273859568 -> 943273854928
+	943273861888 -> 943273866528
+	943273852608 -> 943273882768
+	943273852608 -> 943273885088
+	943273882768 -> 943273878128
+	943273882768 -> 943273873488
+	943273878128 -> 943273875808
+	943273875808 -> 943273880448
+	943273873488 -> 943273868848
+	943273871168 -> 943273892048
+	943273871168 -> 943273905968
+	943273892048 -> 943273889728
+	943273892048 -> 943273903648
+	943273889728 -> 943273887408
+	943273887408 -> 943273901328
+	943273903648 -> 943273899008
+	943273908288 -> 943273894368
+	943273894368 -> 943273910608
+	943273894368 -> 943371504304
+	943273894368 -> 943371529824
+	943273894368 -> 943371534464
+	943273894368 -> 943379312448
+	943273894368 -> 943594547680
+	943273894368 -> 943594550000
+	943273910608 -> 943273896688
+	943273896688 -> 943273919888
+	943273919888 -> 943273924528
+	943273919888 -> 943371499664
+	943273919888 -> 943371497344
+	943273924528 -> 943273926848
+	943273924528 -> 943273912928
+	943273924528 -> 943273931488
+	943273924528 -> 943496361776
+	943273924528 -> 943496371056
+	943273924528 -> 943496359456
+	943273924528 -> 943496378016
+	943273924528 -> 943496380336
+	943273924528 -> 943496394256
+	943273924528 -> 943496415136
+	943273924528 -> 943496419776
+	943273924528 -> 944758766736
+	943273924528 -> 943371485744
+	943273924528 -> 943371488064
+	943273926848 -> 943273915248
+	943273912928 -> 943273929168
+	943273931488 -> 943273917568
+	943496361776 -> 943496366416
+	943496371056 -> 943496373376
+	943496359456 -> 943496375696
+	943496378016 -> 943496364096
+	943496380336 -> 943496387296
+	943496394256 -> 943496391936
+	943496391936 -> 943496389616
+	943496389616 -> 943496396576
+	943496396576 -> 943496382656
+	943496382656 -> 943496408176
+	943496408176 -> 943496398896
+	943496415136 -> 943496405856
+	943496405856 -> 943496410496
+	943496410496 -> 943496401216
+	943496401216 -> 943496412816
+	943496412816 -> 943496403536
+	943496403536 -> 943496417456
+	943496419776 -> 944758769056
+	944758769056 -> 944758759776
+	944758759776 -> 944758771376
+	944758771376 -> 944758780656
+	944758766736 -> 944758785296
+	944758785296 -> 944173959424
+	944173959424 -> 943371490384
+	943371490384 -> 943371492704
+	943371485744 -> 943371495024
+	943371488064 -> 943371501984
+	943371497344 -> 943371511264
+	943371497344 -> 943371508944
+	943371497344 -> 943371513584
+	943371497344 -> 943371506624
+	943371497344 -> 943371515904
+	943371497344 -> 943371518224
+	943371504304 -> 943371520544
+	943371529824 -> 943371536784
+	943371534464 -> 943371532144
+	943371532144 -> 943371522864
+	943371532144 -> 943379326368
+	943371522864 -> 943371539104
+	943371522864 -> 943379324048
+	943371522864 -> 943379310128
+	943371522864 -> 943379317088
+	943371539104 -> 943371525184
+	943371539104 -> 943371546064
+	943371539104 -> 943379279968
+	943371539104 -> 943379305488
+	943371525184 -> 943371541424
+	943371541424 -> 943371527504
+	943371527504 -> 943371543744
+	943371546064 -> 943371548384
+	943371548384 -> 943371550704
+	943371550704 -> 943379286928
+	943379279968 -> 943379282288
+	943379279968 -> 943379289248
+	943379282288 -> 943379293888
+	943379293888 -> 943379296208
+	943379296208 -> 943379298528
+	943379289248 -> 943379284608
+	943379284608 -> 943379300848
+	943379300848 -> 943379303168
+	943379305488 -> 943379291568
+	943379291568 -> 943379307808
+	943379307808 -> 943379319408
+	943379324048 -> 943379314768
+	943379312448 -> 943379333328
+	943379333328 -> 943379335648
+	943379333328 -> 943594554640
+	943379335648 -> 943379337968
+	943379335648 -> 943594533760
+	943379335648 -> 943594538400
+	943379335648 -> 943594524480
+	943379337968 -> 943379340288
+	943379337968 -> 943594498960
+	943379337968 -> 943594501280
+	943379337968 -> 943594515200
+	943379340288 -> 943379342608
+	943379342608 -> 943379328688
+	943379328688 -> 943379331008
+	943594498960 -> 943594503600
+	943594503600 -> 943594505920
+	943594505920 -> 943594492000
+	943594501280 -> 943594496640
+	943594501280 -> 943594522160
+	943594496640 -> 943594494320
+	943594494320 -> 943594510560
+	943594510560 -> 943594512880
+	943594522160 -> 943594508240
+	943594508240 -> 943594529120
+	943594529120 -> 943594526800
+	943594515200 -> 943594531440
+	943594531440 -> 943594517520
+	943594517520 -> 943594519840
+	943594533760 -> 943594536080
+	943594547680 -> 943594540720
+	943594550000 -> 943594552320
+	943594545360 -> 943594543040
+	943379321728 -> 943272666640
+	943379321728 -> 943272668960
+	943272678240 -> 943272671280
+	943272678240 -> 943272664320
+	943272678240 -> 943272675920
+	943272678240 -> 943272680560
+	943272678240 -> 943272673600
+	943272678240 -> 943272687520
+	943272678240 -> 943272689840
+	943272678240 -> 943272682880
+	943272678240 -> 943272696800
+	943386116240 -> 943410811856
+	943272671280 -> 943386116240
+	943386109584 -> 943410806672
+	943272664320 -> 943386109584
+	943386111632 -> 943410810512
+	943272675920 -> 943386111632
+	943386105488 -> 943410809936
+	943272680560 -> 943386105488
+	943386112144 -> 943410813392
+	943272673600 -> 943386112144
+	943386103440 -> 943410810896
+	943272687520 -> 943386103440
+	943386100880 -> 943410806864
+	943272689840 -> 943386100880
+	943386113168 -> 943410803024
+	943272682880 -> 943386113168
+	943272696800 -> 943272699120
+	943272696800 -> 943272692160
+	943272696800 -> 943272694480
+	943410809552 -> 943272678240
+	943410802832 -> 943379321728
+	943410806672 -> 943161530512
+	943161530512 -> 943273924528
+	943410810512 -> 943161532768
+	943410810512 -> 943161537280
+	943410810512 -> 943161539536
+	943410810512 -> 943161533520
+	943410810512 -> 943161541792
+	943410810512 -> 943161534272
+	943410810512 -> 943161542544
+	943161532768 -> 943371485744
+	943161537280 -> 943371488064
+	943161539536 -> 943273931488
+	943161533520 -> 943496361776
+	943161541792 -> 943273926848
+	943161534272 -> 943273912928
+	943161542544 -> 943273924528
+	943410809936 -> 943161538032
+	943410809936 -> 943161538784
+	943410809936 -> 943161528256
+	943161538032 -> 943371504304
+	943161538784 -> 943371529824
+	943161528256 -> 943273894368
+	943410810896 -> 943161541040
+	943410810896 -> 943161529760
+	943410810896 -> 943161535024
+	943410810896 -> 943161529008
+	943410810896 -> 943161536528
+	943410810896 -> 942771117424
+	943410810896 -> 942771112160
+	943410810896 -> 942771113664
+	943410810896 -> 942771111408
+	943410810896 -> 942771118176
+	943410810896 -> 944747923504
+	943410810896 -> 943347539232
+	943410810896 -> 943347533216
+	943410810896 -> 943347541488
+	943410810896 -> 943347539984
+	943410810896 -> 943347542992
+	943410810896 -> 943347546752
+	943410810896 -> 943347546000
+	943410810896 -> 943347542240
+	943410810896 -> 943347533968
+	943410810896 -> 943347535472
+	943410810896 -> 943347545248
+	943410810896 -> 943347531712
+	943410810896 -> 943347534720
+	943410810896 -> 943347532464
+	943410810896 -> 943347543744
+	943410810896 -> 943347536224
+	943410810896 -> 943347544496
+	943410810896 -> 943347536976
+	943410810896 -> 943347540736
+	943410810896 -> 943347537728
+	943410810896 -> 943347538480
+	943410810896 -> 943164969584
+	943410810896 -> 943164977856
+	943410810896 -> 943164971088
+	943410810896 -> 943164966576
+	943410810896 -> 943164973344
+	943410810896 -> 943164971840
+	943410810896 -> 943164972592
+	943410810896 -> 943164974096
+	943410810896 -> 943164974848
+	943410810896 -> 943164975600
+	943410810896 -> 943164976352
+	943410810896 -> 943164977104
+	943410810896 -> 943164968080
+	943410810896 -> 943164979360
+	943410810896 -> 943164970336
+	943410810896 -> 943164978608
+	943410810896 -> 943164965824
+	943410810896 -> 943164980112
+	943410810896 -> 943164965072
+	943410810896 -> 943164967328
+	943410810896 -> 943164968832
+	943410810896 -> 943070467488
+	943410810896 -> 943070470496
+	943410810896 -> 943070472000
+	943410810896 -> 943070473504
+	943410810896 -> 943070465232
+	943410810896 -> 943070468240
+	943410810896 -> 943070474256
+	943410810896 -> 943070468992
+	943410810896 -> 943070475008
+	943410810896 -> 943070465984
+	943410810896 -> 943070466736
+	943410810896 -> 943070475760
+	943410810896 -> 943070469744
+	943410810896 -> 943070471248
+	943410810896 -> 943070476512
+	943410810896 -> 943070477264
+	943410810896 -> 943070472752
+	943410810896 -> 943070478016
+	943410810896 -> 943070478768
+	943410810896 -> 943070463728
+	943410810896 -> 943070464480
+	943410810896 -> 943135903456
+	943161541040 -> 943273908288
+	943161529760 -> 943594547680
+	943161535024 -> 943594550000
+	943161529008 -> 943273894368
+	943161536528 -> 943379279968
+	942771117424 -> 943594501280
+	942771112160 -> 943379324048
+	942771113664 -> 943594533760
+	942771111408 -> 943273878128
+	942771118176 -> 943273889728
+	944747923504 -> 943379310128
+	943347539232 -> 943594538400
+	943347533216 -> 943379317088
+	943347541488 -> 943594524480
+	943347539984 -> 943371522864
+	943347542992 -> 943379335648
+	943347546752 -> 943371539104
+	943347546000 -> 943379337968
+	943347542240 -> 943273924528
+	943347533968 -> 943273919888
+	943347535472 -> 943273885088
+	943347545248 -> 943273905968
+	943347531712 -> 943273852608
+	943347534720 -> 943273871168
+	943347532464 -> 943273834048
+	943347543744 -> 943371525184
+	943347536224 -> 943379340288
+	943347544496 -> 943371541424
+	943347536976 -> 943379342608
+	943347540736 -> 943371527504
+	943347537728 -> 943379328688
+	943347538480 -> 943273873488
+	943164969584 -> 943273903648
+	943164977856 -> 943273882768
+	943164971088 -> 943273892048
+	943164966576 -> 943371546064
+	943164973344 -> 943594498960
+	943164971840 -> 943371548384
+	943164972592 -> 943594503600
+	943164974096 -> 943371550704
+	943164974848 -> 943594505920
+	943164975600 -> 943273910608
+	943164976352 -> 943273896688
+	943164977104 -> 943379289248
+	943164968080 -> 943594522160
+	943164979360 -> 943379284608
+	943164970336 -> 943594508240
+	943164978608 -> 943379300848
+	943164965824 -> 943594529120
+	943164980112 -> 943379282288
+	943164965072 -> 943594496640
+	943164967328 -> 943379293888
+	943164968832 -> 943594494320
+	943070467488 -> 943379296208
+	943070470496 -> 943594510560
+	943070472000 -> 943273838688
+	943070473504 -> 943371534464
+	943070465232 -> 943379312448
+	943070468240 -> 943273859568
+	943070474256 -> 943273857248
+	943070468992 -> 943273861888
+	943070475008 -> 943273866528
+	943070465984 -> 943273836368
+	943070466736 -> 943379305488
+	943070475760 -> 943594515200
+	943070469744 -> 943379291568
+	943070471248 -> 943594531440
+	943070476512 -> 943379307808
+	943070477264 -> 943594517520
+	943070472752 -> 943273875808
+	943070478016 -> 943273887408
+	943070478768 -> 943379326368
+	943070463728 -> 943594554640
+	943070464480 -> 943371532144
+	943135903456 -> 943379333328
+	943410811856 -> 943135900448
+	943410811856 -> 943135895184
+	943410811856 -> 943135890672
+	943410811856 -> 943135893680
+	943410811856 -> 943135889920
+	943410811856 -> 943135891424
+	943135900448 -> 943371511264
+	943135895184 -> 943371508944
+	943135890672 -> 943371513584
+	943135893680 -> 943371506624
+	943135889920 -> 943371515904
+	943135891424 -> 943371518224
+	943410806864 -> 943135892928
+	943135892928 -> 943273919888
+	943410803024 -> 943135894432
+	943135894432 -> 943273919888
+	943410813392 -> 943135889168
+	943410813392 -> 943135904208
+	943410813392 -> 943135892176
+	943410813392 -> 943135895936
+	943410813392 -> 943135896688
+	943410813392 -> 943135897440
+	943410813392 -> 943135898192
+	943410813392 -> 943135898944
+	943410813392 -> 943135899696
+	943410813392 -> 943135901200
+	943410813392 -> 943135901952
+	943410813392 -> 943135902704
+	943410813392 -> 943164949328
+	943410813392 -> 943164950080
+	943410813392 -> 943164960608
+	943410813392 -> 943164950832
+	943410813392 -> 943164961360
+	943410813392 -> 943164957600
+	943410813392 -> 943164958352
+	943410813392 -> 943164959104
+	943410813392 -> 943164959856
+	943410813392 -> 943164951584
+	943410813392 -> 943164956096
+	943410813392 -> 943164954592
+	943410813392 -> 943164962112
+	943135889168 -> 943496408176
+	943135904208 -> 943496382656
+	943135892176 -> 943496396576
+	943135895936 -> 943496389616
+	943135896688 -> 944758771376
+	943135897440 -> 944758759776
+	943135898192 -> 944758769056
+	943135898944 -> 943496391936
+	943135899696 -> 943496394256
+	943135901200 -> 943496419776
+	943135901952 -> 943371490384
+	943135902704 -> 943496403536
+	943164949328 -> 943496412816
+	943164950080 -> 943496401216
+	943164960608 -> 943496410496
+	943164950832 -> 944173959424
+	943164961360 -> 944758785296
+	943164957600 -> 943496405856
+	943164958352 -> 943496415136
+	943164959104 -> 944758766736
+	943164959856 -> 943496378016
+	943164951584 -> 943496380336
+	943164956096 -> 943496371056
+	943164954592 -> 943496359456
+	943164962112 -> 943273924528
+}
