@@ -86,7 +86,7 @@ fn traverse_pose<R: Read>(context: &mut Context<R>, obj_props: ObjectProperties)
     while let Some((name, properties)) = context.get_next_node_event() {
         match name.as_ref() {
             "Type" => {
-                if let Some(t) = properties.into_iter().next().and_then(NodeProperty::into_string) {
+                if let Some(t) = properties.into_iter().flat_map(NodeProperty::into_string).next() {
                     pose_type = t;
                 }
                 context.skip_current_node();
@@ -95,7 +95,7 @@ fn traverse_pose<R: Read>(context: &mut Context<R>, obj_props: ObjectProperties)
                 let mut child_id = None;
                 while let Some((name, properties)) = context.get_next_node_event() {
                     if name == "Node" {
-                        child_id = properties.into_iter().next().and_then(NodeProperty::into_i64);
+                        child_id = properties.into_iter().flat_map(NodeProperty::into_i64).next();
                     }
                     context.skip_current_node();
                 }
@@ -120,10 +120,10 @@ fn traverse_connections<R: Read>(context: &mut Context<R>) {
             continue;
         }
         let mut prop_iter = properties.into_iter();
-        let connection_type = prop_iter.next().and_then(NodeProperty::into_string);
-        let child_uid = prop_iter.next().and_then(NodeProperty::into_i64);
-        let parent_uid = prop_iter.next().and_then(NodeProperty::into_i64);
-        let property_name = prop_iter.next().and_then(NodeProperty::into_string);
+        let connection_type = prop_iter.next().into_iter().flat_map(NodeProperty::into_string).next();
+        let child_uid = prop_iter.next().into_iter().flat_map(NodeProperty::into_i64).next();
+        let parent_uid = prop_iter.next().into_iter().flat_map(NodeProperty::into_i64).next();
+        let property_name = prop_iter.next().into_iter().flat_map(NodeProperty::into_string).next();
         if let (Some(connection_type), Some(child_uid), Some(parent_uid)) = (connection_type, child_uid, parent_uid) {
             let mut edge = Edge::new(parent_uid, child_uid);
             edge.data.connection_type = Some(connection_type);
