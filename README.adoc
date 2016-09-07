@@ -18,7 +18,7 @@ and then puts dot file to `dot_file`.
 If `dot_file` is not specified, standard output is used.
 
 About dot files, see link:http://www.graphviz.org/[Graphviz | Graphviz - Graph Visualization Software] and
-link:http://www.graphviz.org/content/dot-language[This official document].
+link:http://www.graphviz.org/content/dot-language[the official document].
 
 For sample json files and their outputs, see `examples/` directory.
 

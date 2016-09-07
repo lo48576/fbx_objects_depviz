@@ -13,9 +13,9 @@ pub struct ObjectProperties {
 impl ObjectProperties {
     pub fn new_from_node_properties(props: Vec<NodeProperty>) -> Option<Self> {
         let mut prop_iter = props.into_iter();
-        let uid = prop_iter.next().and_then(NodeProperty::into_i64);
-        let name_class = prop_iter.next().and_then(NodeProperty::into_string);
-        let subclass = prop_iter.next().and_then(NodeProperty::into_string);
+        let uid = prop_iter.next().into_iter().flat_map(NodeProperty::into_i64).next();
+        let name_class = prop_iter.next().into_iter().flat_map(NodeProperty::into_string).next();
+        let subclass = prop_iter.next().into_iter().flat_map(NodeProperty::into_string).next();
         if let (Some(uid), Some((name, class)), Some(subclass)) = (uid, name_class.as_ref().and_then(separate_name_class), subclass) {
             Some(ObjectProperties::new(uid, name.to_string(), class.to_string(), subclass))
         } else {

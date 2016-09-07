@@ -1,10 +1,10 @@
 [package]
 name = "fbx_objects_depviz"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Takuma Yoshioka <nu11p0.6477@gmail.com>"]
 
 [dependencies]
 docopt = "^0.6.78"
-fbx_direct = "^0.5.1"
+fbx_direct = "^0.6.1"
 regex = "^0.1.52"
 rustc-serialize = "^0.3.18"
