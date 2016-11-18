@@ -92,6 +92,20 @@ impl<N: Clone, E: Clone> Graph<N, E> {
         }
     }
 
+    pub fn map_children<I, F>(&mut self, targets: I, fun: F)
+        where I: IntoIterator<Item=i64>,
+              F: Fn(&mut Node<N>)
+    {
+        // Get children of `targets`.
+        let targets = targets.into_iter()
+            .flat_map(|i| self.edges.iter().filter(|e| e.parent == i).map(|e| e.child).collect::<Vec<_>>().into_iter())
+            .collect::<Vec<i64>>();
+        for target in targets {
+            // Process current node.
+            self.nodes.get_mut(&target).map(&fun);
+        }
+    }
+
     pub fn output_all<W: Write>(&self, out: &mut W) -> io::Result<()> {
         try!(self.print_beginning(out));
         // Print nodes
