@@ -145,7 +145,7 @@ impl<N: Clone, E: Clone> Graph<N, E> {
             let parent_is_visible = self.nodes.get(&e.parent).map(|n| n.is_visible());
             let child_is_visible = self.nodes.get(&e.child).map(|n| n.is_visible());
             if (parent_is_visible.is_some() || child_is_visible.is_some()) &&
-                (parent_is_visible.unwrap_or(print_unregistered_nodes) || child_is_visible.unwrap_or(print_unregistered_nodes))
+                (parent_is_visible.unwrap_or(print_unregistered_nodes) && child_is_visible.unwrap_or(print_unregistered_nodes))
             {
                 try!(e.print(out));
             }
