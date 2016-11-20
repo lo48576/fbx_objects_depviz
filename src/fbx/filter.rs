@@ -90,6 +90,9 @@ impl Filters {
                                     "descendant" => {
                                         graph.map_descendant(Some(id), |n| n.visible = visibility);
                                     },
+                                    "parents" => {
+                                        graph.map_parents(Some(id), |n| n.visible = visibility);
+                                    },
                                     "children" => {
                                         graph.map_children(Some(id), |n| n.visible = visibility);
                                     },
