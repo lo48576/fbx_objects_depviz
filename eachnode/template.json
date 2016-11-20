@@ -1,0 +1,100 @@
+{
+    "graph_styles": {
+        "ranksep": "1.0",
+        "rankdir": "LR"
+    },
+    "node_styles": {
+        "shape": "box"
+    },
+    "edge_styles": {
+    },
+    "node_operations": {
+        "target_node": [
+            {
+                "name": "update-attr",
+                "args": [
+                    ["style", "filled"],
+                    ["fillcolor", "#ffcccc"]
+                ]
+            },
+            {
+                "name": "show",
+                "args": [
+                    ["self", "children", "parents"]
+                ]
+            }
+        ],
+        "show": [
+            {
+                "name": "show",
+                "args": [
+                    ["self"]
+                ]
+            }
+        ],
+        "hide": [
+            {
+                "name": "hide",
+                "args": [
+                    ["self"]
+                ]
+            }
+        ]
+    },
+    "edge_operations": {
+        "obj-prop-edge": [
+            {
+                "name": "update-attr",
+                "args": [
+                    ["color", "#0000ff"]
+                ]
+            }
+        ],
+        "pose": [
+            {
+                "name": "update-attr",
+                "args": [
+                    ["style", "dashed"]
+                ]
+            }
+        ],
+        "obj-to-prop": [
+            {
+                "name": "update-attr",
+                "args": [
+                    ["color", "#ff0000"]
+                ]
+            }
+        ]
+    },
+    "node_filters": [
+        {
+            "condition": {},
+            "operations": ["hide"]
+        },
+        {
+            "condition": {
+                "class": "<<class>>",
+                "subclass": "<<subclass>>"
+            },
+            "operations": ["target_node"]
+        }
+    ],
+    "edge_filters": [
+        {
+            "condition": {
+                "src_condition": {
+                    "class": "Pose"
+                },
+                "connection_type": "^Pose$"
+            },
+            "operations": ["pose"]
+        },
+        {
+            "condition": {
+                "connection_type": "^OP$"
+            },
+            "operations": ["obj-to-prop"]
+        }
+    ]
+}
