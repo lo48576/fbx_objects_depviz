@@ -33,7 +33,7 @@ filter() {
     DOT_OUT="${RESULT_DIR}/${CLASS}_${SUBCLASS_NAME}.dot"
     SVG_OUT="${RESULT_DIR}/${CLASS}_${SUBCLASS_NAME}.svg"
     PNG_OUT="${RESULT_DIR}/${CLASS}_${SUBCLASS_NAME}.png"
-    TEMP_TEMPLATE="${SCRIPT_DIR}/temp_template.json"
+    TEMP_TEMPLATE="${SCRIPT_DIR}/temp_template_$$.json"
     sed \
         -e "s/<<class>>/^${CLASS}\$/" \
         -e "s/<<subclass>>/${SUBCLASS_PAT}/" \
