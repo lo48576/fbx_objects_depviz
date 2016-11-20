@@ -101,6 +101,8 @@ filter_root() {
 
 filter_root
 filter 'NodeAttribute'  'Null'
+filter 'NodeAttribute'  'Camera'
+filter 'NodeAttribute'  'Light'
 filter 'NodeAttribute'  'LimbNode'
 filter 'Geometry'       'Mesh'
 filter 'Geometry'       'Shape'
