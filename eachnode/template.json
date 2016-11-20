@@ -96,5 +96,6 @@
             },
             "operations": ["obj-to-prop"]
         }
-    ]
+    ],
+    "show_implicit_nodes": <<show_implicit_nodes>>
 }
