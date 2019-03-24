@@ -18,7 +18,7 @@ pub struct EdgeData {
 pub mod filter;
 mod property;
 
-struct Context<'a, R: 'a+Read> {
+struct Context<'a, R: Read> {
     pub graph: &'a mut Graph,
     pub reader: &'a mut EventReader<R>,
 }
@@ -60,7 +60,7 @@ pub fn traverse<R: Read>(graph: &mut Graph, src: &mut R) {
     }
 }
 
-fn traverse_objects<R: Read>(context: &mut Context<R>) {
+fn traverse_objects<R: Read>(context: &mut Context<'_, R>) {
     while let Some((name, properties)) = context.get_next_node_event() {
         let obj_props = if let Some(props) = ObjectProperties::new_from_node_properties(properties) {
             props
@@ -81,7 +81,7 @@ fn traverse_objects<R: Read>(context: &mut Context<R>) {
     }
 }
 
-fn traverse_pose<R: Read>(context: &mut Context<R>, obj_props: ObjectProperties) {
+fn traverse_pose<R: Read>(context: &mut Context<'_, R>, obj_props: ObjectProperties) {
     let mut pose_type = String::new();
     while let Some((name, properties)) = context.get_next_node_event() {
         match name.as_ref() {
@@ -113,7 +113,7 @@ fn traverse_pose<R: Read>(context: &mut Context<R>, obj_props: ObjectProperties)
     context.graph.add_node(node);
 }
 
-fn traverse_connections<R: Read>(context: &mut Context<R>) {
+fn traverse_connections<R: Read>(context: &mut Context<'_, R>) {
     while let Some((name, properties)) = context.get_next_node_event() {
         if name != "C" {
             context.skip_current_node();

@@ -1,8 +1,3 @@
-extern crate docopt;
-extern crate fbx_direct;
-extern crate regex;
-extern crate rustc_serialize;
-
 use std::fs::File;
 use std::io::{BufReader, BufWriter, Write};
 use docopt::Docopt;
@@ -36,9 +31,9 @@ fn main() {
 
     let mut src = BufReader::new(File::open(&args.arg_fbx_name).unwrap());
     let mut out: BufWriter<_> = BufWriter::new(if let Some(ref out_name) = args.flag_output {
-        Box::new(File::create(&out_name).unwrap()) as Box<Write>
+        Box::new(File::create(&out_name).unwrap()) as Box<dyn Write>
     } else {
-        Box::new(::std::io::stdout()) as Box<Write>
+        Box::new(::std::io::stdout()) as Box<dyn Write>
     });
 
     let mut graph = fbx::Graph::new(args.arg_fbx_name.clone());
