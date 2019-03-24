@@ -1,4 +1,4 @@
-# fbx_objects_depviz, FBX objects (nodes) dependency visualizer
+# fbx\_objects\_depviz, FBX objects (nodes) dependency visualizer
 
 ![sample output](examples/models.dot.small.png)
 
