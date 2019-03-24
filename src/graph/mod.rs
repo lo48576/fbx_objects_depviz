@@ -171,7 +171,7 @@ impl<N: Clone, E: Clone> Graph<N, E> {
     pub fn output_all<W: Write>(&self, out: &mut W) -> io::Result<()> {
         self.print_beginning(out)?;
         // Print nodes
-        for (_, n) in &self.nodes {
+        for n in self.nodes.values() {
             n.print(out)?;
         }
         // Print edges
@@ -189,7 +189,7 @@ impl<N: Clone, E: Clone> Graph<N, E> {
     ) -> io::Result<()> {
         self.print_beginning(out)?;
         // Print visible nodes
-        for (_, n) in self.nodes.iter().filter(|&(_, n)| n.is_visible()) {
+        for n in self.nodes.values().filter(|n| n.is_visible()) {
             n.print(out)?;
         }
         // Print edges
@@ -211,7 +211,7 @@ impl<N: Clone, E: Clone> Graph<N, E> {
         writeln!(out, "digraph \"{}\" {{", self.name)?;
 
         // Print graph settings.
-        if self.graph_styles.len() > 0 {
+        if !self.graph_styles.is_empty() {
             let mut print_comma = false;
             writeln!(out, "\tgraph [")?;
             for (key, value) in &self.graph_styles {
@@ -225,7 +225,7 @@ impl<N: Clone, E: Clone> Graph<N, E> {
         }
 
         // Print node settings.
-        if self.node_styles.len() > 0 {
+        if !self.node_styles.is_empty() {
             let mut print_comma = false;
             writeln!(out, "\tnode [")?;
             for (key, value) in &self.node_styles {
@@ -239,7 +239,7 @@ impl<N: Clone, E: Clone> Graph<N, E> {
         }
 
         // Print edge settings.
-        if self.edge_styles.len() > 0 {
+        if !self.edge_styles.is_empty() {
             let mut print_comma = false;
             writeln!(out, "\tedge [")?;
             for (key, value) in &self.edge_styles {
@@ -277,16 +277,16 @@ impl<T: Clone + Default> Node<T> {
 impl<T: Clone> Node<T> {
     pub fn new_with_data(id: i64, data: T) -> Self {
         Node {
-            id: id,
+            id,
             visible: true,
             styles: Default::default(),
-            data: data,
+            data,
         }
     }
 
     pub fn print<W: Write>(&self, out: &mut W) -> io::Result<()> {
         write!(out, "\t{}", self.id)?;
-        if self.styles.len() > 0 {
+        if !self.styles.is_empty() {
             let mut print_comma = false;
             write!(out, " [")?;
             for (key, value) in &self.styles {
@@ -298,7 +298,7 @@ impl<T: Clone> Node<T> {
             }
             write!(out, "]")?;
         }
-        write!(out, "\n")?;
+        writeln!(out)?;
         Ok(())
     }
 
@@ -324,16 +324,16 @@ impl<T: Clone + Default> Edge<T> {
 impl<T: Clone> Edge<T> {
     pub fn new_with_data(parent: i64, child: i64, data: T) -> Self {
         Edge {
-            parent: parent,
-            child: child,
+            parent,
+            child,
             styles: Default::default(),
-            data: data,
+            data,
         }
     }
 
     pub fn print<W: Write>(&self, out: &mut W) -> io::Result<()> {
         write!(out, "\t{} -> {}", self.parent, self.child)?;
-        if self.styles.len() > 0 {
+        if !self.styles.is_empty() {
             let mut print_comma = false;
             write!(out, " [")?;
             for (key, value) in &self.styles {
@@ -345,7 +345,7 @@ impl<T: Clone> Edge<T> {
             }
             write!(out, "]")?;
         }
-        write!(out, "\n")?;
+        writeln!(out)?;
         Ok(())
     }
 }

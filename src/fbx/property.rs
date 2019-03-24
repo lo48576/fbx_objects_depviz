@@ -30,7 +30,10 @@ impl ObjectProperties {
             .next();
         if let (Some(uid), Some((name, class)), Some(subclass)) = (
             uid,
-            name_class.as_ref().and_then(separate_name_class),
+            name_class
+                .as_ref()
+                .map(AsRef::as_ref)
+                .and_then(separate_name_class),
             subclass,
         ) {
             Some(ObjectProperties::new(
@@ -46,16 +49,16 @@ impl ObjectProperties {
 
     fn new(uid: i64, name: String, class: String, subclass: String) -> Self {
         ObjectProperties {
-            uid: uid,
-            name: name,
-            class: class,
-            subclass: subclass,
+            uid,
+            name,
+            class,
+            subclass,
         }
     }
 }
 
 /// Returns `Option<(name: String, class: String)>`
-fn separate_name_class<'a>(name_class: &'a String) -> Option<(&'a str, &'a str)> {
+fn separate_name_class(name_class: &str) -> Option<(&str, &str)> {
     if let Some(sep_pos) = name_class.find("\u{0}\u{1}") {
         // String is "name\u{0}\u{1}class" format.
         Some((&name_class[0..sep_pos], &name_class[sep_pos + 2..]))

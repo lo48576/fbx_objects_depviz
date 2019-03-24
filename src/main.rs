@@ -6,7 +6,7 @@ use std::io::{BufReader, BufWriter, Write};
 mod fbx;
 pub mod graph;
 
-const USAGE: &'static str = "
+const USAGE: &str = "
 Visualize FBX objects dependency.
 
 Usage:

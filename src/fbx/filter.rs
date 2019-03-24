@@ -69,7 +69,7 @@ impl Filters {
         }
     }
 
-    fn apply_node_operations(&self, id: i64, graph: &mut Graph, ops: &Vec<String>) {
+    fn apply_node_operations(&self, id: i64, graph: &mut Graph, ops: &[String]) {
         for ops in ops.iter().filter_map(|s| self.node_operations.get(s)) {
             for op in ops {
                 match op.name.as_ref() {
@@ -99,7 +99,9 @@ impl Filters {
                             for target in args {
                                 match target.as_ref() {
                                     "self" => {
-                                        graph.nodes.get_mut(&id).map(|n| n.visible = visibility);
+                                        if let Some(n) = graph.nodes.get_mut(&id) {
+                                            n.visible = visibility;
+                                        }
                                     }
                                     "ascendant" => {
                                         graph.map_ascendant(Some(id), |n| n.visible = visibility);
@@ -128,7 +130,7 @@ impl Filters {
         &self,
         edge: &mut Edge,
         _nodes: &mut BTreeMap<i64, Node>,
-        ops: &Vec<String>,
+        ops: &[String],
     ) {
         for ops in ops.iter().filter_map(|s| self.edge_operations.get(s)) {
             for op in ops {
@@ -206,10 +208,10 @@ impl NodeFilterCondition {
             None
         };
         Ok(CompiledNodeFilterCondition {
-            class: class,
-            subclass: subclass,
-            name: name,
-            uid: uid,
+            class,
+            subclass,
+            name,
+            uid,
         })
     }
 }
@@ -239,10 +241,8 @@ impl CompiledNodeFilterCondition {
                     return false;
                 }
             }
-        } else {
-            if self.class.is_some() || self.subclass.is_some() || self.name.is_some() {
-                return false;
-            }
+        } else if self.class.is_some() || self.subclass.is_some() || self.name.is_some() {
+            return false;
         }
         if let Some(ref re) = self.uid {
             if !re.is_match(&node.id.to_string()) {
@@ -290,10 +290,10 @@ impl EdgeFilterCondition {
             None
         };
         Ok(CompiledEdgeFilterCondition {
-            src_condition: src_condition,
-            dst_condition: dst_condition,
-            connection_type: connection_type,
-            property_name: property_name,
+            src_condition,
+            dst_condition,
+            connection_type,
+            property_name,
         })
     }
 }

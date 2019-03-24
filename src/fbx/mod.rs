@@ -25,10 +25,7 @@ struct Context<'a, R: Read> {
 
 impl<'a, R: Read> Context<'a, R> {
     pub fn new(graph: &'a mut Graph, reader: &'a mut EventReader<R>) -> Self {
-        Context {
-            graph: graph,
-            reader: reader,
-        }
+        Context { graph, reader }
     }
 
     pub fn get_next_node_event(&mut self) -> Option<(String, Vec<NodeProperty>)> {
