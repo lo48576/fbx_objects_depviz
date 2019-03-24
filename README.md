@@ -1,5 +1,7 @@
 # fbx\_objects\_depviz, FBX objects (nodes) dependency visualizer
 
+![Minimum rustc version: 1.33](https://img.shields.io/badge/rustc-1.33+-lightgray.svg)
+
 ![sample output](examples/models.dot.small.png)
 
 ## About
@@ -22,6 +24,10 @@ About dot files, see
 and [the official content](http://www.graphviz.org/content/dot-language).
 
 For sample json files and their outputs, see `examples/` directory.
+
+## Rust version
+
+Latest stable compiler (currently 1.33) is supported.
 
 ## License
 
