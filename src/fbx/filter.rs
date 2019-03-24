@@ -1,7 +1,9 @@
-use crate::fbx::{Edge, Graph, Node};
+use std::collections::{BTreeMap, HashMap};
+
 use regex::{self, Regex};
 use serde::Deserialize;
-use std::collections::{BTreeMap, HashMap};
+
+use crate::fbx::{Edge, Graph, Node};
 
 #[derive(Debug, Default, Clone, Deserialize)]
 pub struct Filters {

@@ -1,7 +1,8 @@
-use std::collections::{BTreeMap, HashMap, HashSet};
-use std::io;
-use std::io::Write;
-use std::path::PathBuf;
+use std::{
+    collections::{BTreeMap, HashMap, HashSet},
+    io::{self, Write},
+    path::PathBuf,
+};
 
 #[derive(Debug, Clone)]
 pub struct Graph<N: Clone, E: Clone> {

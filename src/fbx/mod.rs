@@ -1,7 +1,14 @@
-use self::property::ObjectProperties;
-use fbx_direct::common::OwnedProperty as NodeProperty;
-use fbx_direct::reader::{EventReader, FbxEvent, ParserConfig};
 use std::io::Read;
+
+use fbx_direct::{
+    common::OwnedProperty as NodeProperty,
+    reader::{EventReader, FbxEvent, ParserConfig},
+};
+
+use self::property::ObjectProperties;
+
+pub mod filter;
+mod property;
 
 pub type NodeData = Option<ObjectProperties>;
 
@@ -14,9 +21,6 @@ pub struct EdgeData {
     pub connection_type: Option<String>,
     pub property_name: Option<String>,
 }
-
-pub mod filter;
-mod property;
 
 struct Context<'a, R: Read> {
     pub graph: &'a mut Graph,
