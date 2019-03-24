@@ -1,8 +1,9 @@
 use crate::fbx::{Edge, Graph, Node};
 use regex::{self, Regex};
+use serde::Deserialize;
 use std::collections::{BTreeMap, HashMap};
 
-#[derive(Debug, Default, Clone, RustcDecodable)]
+#[derive(Debug, Default, Clone, Deserialize)]
 pub struct Filters {
     pub graph_styles: HashMap<String, String>,
     pub node_styles: HashMap<String, String>,
@@ -159,25 +160,25 @@ impl Filters {
     }
 }
 
-#[derive(Debug, Clone, RustcDecodable)]
+#[derive(Debug, Clone, Deserialize)]
 pub struct NodeOperation {
     pub name: String,
     pub args: Vec<Vec<String>>,
 }
 
-#[derive(Debug, Clone, RustcDecodable)]
+#[derive(Debug, Clone, Deserialize)]
 pub struct EdgeOperation {
     pub name: String,
     pub args: Vec<Vec<String>>,
 }
 
-#[derive(Debug, Clone, RustcDecodable)]
+#[derive(Debug, Clone, Deserialize)]
 pub struct NodeFilter {
     pub condition: NodeFilterCondition,
     pub operations: Vec<String>,
 }
 
-#[derive(Debug, Clone, RustcDecodable)]
+#[derive(Debug, Clone, Deserialize)]
 pub struct NodeFilterCondition {
     pub class: Option<String>,
     pub subclass: Option<String>,
@@ -253,13 +254,13 @@ impl CompiledNodeFilterCondition {
     }
 }
 
-#[derive(Debug, Clone, RustcDecodable)]
+#[derive(Debug, Clone, Deserialize)]
 pub struct EdgeFilter {
     pub condition: EdgeFilterCondition,
     pub operations: Vec<String>,
 }
 
-#[derive(Debug, Clone, RustcDecodable)]
+#[derive(Debug, Clone, Deserialize)]
 pub struct EdgeFilterCondition {
     pub src_condition: Option<NodeFilterCondition>,
     pub dst_condition: Option<NodeFilterCondition>,

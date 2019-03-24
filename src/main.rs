@@ -1,4 +1,3 @@
-use rustc_serialize::json;
 use std::fs::File;
 use std::io::{BufReader, BufWriter, Write};
 use std::path::PathBuf;
@@ -45,7 +44,7 @@ fn main() {
                 .unwrap()
                 .read_to_string(&mut filter_json_str)
                 .unwrap();
-            json::decode(&filter_json_str).unwrap()
+            serde_json::from_str(&filter_json_str).unwrap()
         };
         filters.apply(&mut graph);
         graph
