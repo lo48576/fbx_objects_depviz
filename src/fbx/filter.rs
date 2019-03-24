@@ -1,6 +1,6 @@
 use std::collections::{BTreeMap, HashMap};
 use regex::{self, Regex};
-use ::fbx::{Graph, Node, Edge};
+use crate::fbx::{Graph, Node, Edge};
 
 #[derive(Debug, Default, Clone, RustcDecodable)]
 pub struct Filters {
@@ -29,7 +29,7 @@ impl Filters {
         {
             // Compile node filter conditions.
             let node_conditions = self.node_filters.iter()
-                .map(|f| Ok::<_, regex::Error>((try!(f.condition.compile()), &f.operations)))
+                .map(|f| Ok::<_, regex::Error>((f.condition.compile()?, &f.operations)))
                 .collect::<Result<Vec<_>, _>>().unwrap();
             // Apply each condition to all nodes.
             for &(ref cond, op_names) in &node_conditions {
@@ -42,7 +42,7 @@ impl Filters {
         {
             // Compile edge filter conditions.
             let edge_conditions = self.edge_filters.iter()
-                .map(|f| Ok::<_, regex::Error>((try!(f.condition.compile()), &f.operations)))
+                .map(|f| Ok::<_, regex::Error>((f.condition.compile()?, &f.operations)))
                 .collect::<Result<Vec<_>, _>>().unwrap();
             // Apply each condition to all edges.
             for &(ref cond, op_names) in &edge_conditions {
@@ -165,22 +165,22 @@ pub struct NodeFilterCondition {
 impl NodeFilterCondition {
     pub fn compile(&self) -> Result<CompiledNodeFilterCondition, regex::Error> {
         let class = if let Some(ref s) = self.class {
-            Some(try!(Regex::new(s)))
+            Some(Regex::new(s)?)
         } else {
             None
         };
         let subclass = if let Some(ref s) = self.subclass {
-            Some(try!(Regex::new(s)))
+            Some(Regex::new(s)?)
         } else {
             None
         };
         let name = if let Some(ref s) = self.name {
-            Some(try!(Regex::new(s)))
+            Some(Regex::new(s)?)
         } else {
             None
         };
         let uid = if let Some(ref s) = self.uid {
-            Some(try!(Regex::new(s)))
+            Some(Regex::new(s)?)
         } else {
             None
         };
@@ -249,22 +249,22 @@ pub struct EdgeFilterCondition {
 impl EdgeFilterCondition {
     pub fn compile(&self) -> Result<CompiledEdgeFilterCondition, regex::Error> {
         let src_condition = if let Some(ref cond) = self.src_condition {
-            Some(try!(cond.compile()))
+            Some(cond.compile()?)
         } else {
             None
         };
         let dst_condition = if let Some(ref cond) = self.dst_condition {
-            Some(try!(cond.compile()))
+            Some(cond.compile()?)
         } else {
             None
         };
         let connection_type = if let Some(ref s) = self.connection_type {
-            Some(try!(Regex::new(s)))
+            Some(Regex::new(s)?)
         } else {
             None
         };
         let property_name = if let Some(ref s) = self.property_name {
-            Some(try!(Regex::new(s)))
+            Some(Regex::new(s)?)
         } else {
             None
         };

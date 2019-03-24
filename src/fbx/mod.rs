@@ -5,9 +5,9 @@ use self::property::ObjectProperties;
 
 pub type NodeData = Option<ObjectProperties>;
 
-pub type Graph = ::graph::Graph<NodeData, EdgeData>;
-pub type Node = ::graph::Node<NodeData>;
-pub type Edge = ::graph::Edge<EdgeData>;
+pub type Graph = crate::graph::Graph<NodeData, EdgeData>;
+pub type Node = crate::graph::Node<NodeData>;
+pub type Edge = crate::graph::Edge<EdgeData>;
 
 #[derive(Debug, Default, Clone)]
 pub struct EdgeData {

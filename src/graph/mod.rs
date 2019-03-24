@@ -121,24 +121,24 @@ impl<N: Clone, E: Clone> Graph<N, E> {
     }
 
     pub fn output_all<W: Write>(&self, out: &mut W) -> io::Result<()> {
-        try!(self.print_beginning(out));
+        self.print_beginning(out)?;
         // Print nodes
         for (_, n) in &self.nodes {
-            try!(n.print(out));
+            n.print(out)?;
         }
         // Print edges
         for e in &self.edges {
-            try!(e.print(out));
+            e.print(out)?;
         }
-        try!(self.print_ending(out));
+        self.print_ending(out)?;
         Ok(())
     }
 
     pub fn output_visible_nodes<W: Write>(&self, out: &mut W, print_unregistered_nodes: bool) -> io::Result<()> {
-        try!(self.print_beginning(out));
+        self.print_beginning(out)?;
         // Print visible nodes
         for (_, n) in self.nodes.iter().filter(|&(_, n)| n.is_visible()) {
-            try!(n.print(out));
+            n.print(out)?;
         }
         // Print edges
         for e in &self.edges {
@@ -147,62 +147,62 @@ impl<N: Clone, E: Clone> Graph<N, E> {
             if (parent_is_visible.is_some() || child_is_visible.is_some()) &&
                 (parent_is_visible.unwrap_or(print_unregistered_nodes) && child_is_visible.unwrap_or(print_unregistered_nodes))
             {
-                try!(e.print(out));
+                e.print(out)?;
             }
         }
-        try!(self.print_ending(out));
+        self.print_ending(out)?;
         Ok(())
     }
 
     pub fn print_beginning<W: Write>(&self, out: &mut W) -> io::Result<()> {
-        try!(writeln!(out, "digraph \"{}\" {{", self.name));
+        writeln!(out, "digraph \"{}\" {{", self.name)?;
 
         // Print graph settings.
         if self.graph_styles.len() > 0 {
             let mut print_comma = false;
-            try!(writeln!(out, "\tgraph ["));
+            writeln!(out, "\tgraph [")?;
             for (key, value) in &self.graph_styles {
                 if print_comma {
-                    try!(write!(out, "\n, "));
+                    write!(out, "\n, ")?;
                 }
-                try!(write!(out, "\t\t{}=\"{}\"", style_escape(key), style_escape(value)));
+                write!(out, "\t\t{}=\"{}\"", style_escape(key), style_escape(value))?;
                 print_comma = true;
             }
-            try!(writeln!(out, "\n\t]"));
+            writeln!(out, "\n\t]")?;
         }
 
         // Print node settings.
         if self.node_styles.len() > 0 {
             let mut print_comma = false;
-            try!(writeln!(out, "\tnode ["));
+            writeln!(out, "\tnode [")?;
             for (key, value) in &self.node_styles {
                 if print_comma {
-                    try!(write!(out, "\n, "));
+                    write!(out, "\n, ")?;
                 }
-                try!(write!(out, "\t\t{}=\"{}\"", style_escape(key), style_escape(value)));
+                write!(out, "\t\t{}=\"{}\"", style_escape(key), style_escape(value))?;
                 print_comma = true;
             }
-            try!(writeln!(out, "\n\t]"));
+            writeln!(out, "\n\t]")?;
         }
 
         // Print edge settings.
         if self.edge_styles.len() > 0 {
             let mut print_comma = false;
-            try!(writeln!(out, "\tedge ["));
+            writeln!(out, "\tedge [")?;
             for (key, value) in &self.edge_styles {
                 if print_comma {
-                    try!(write!(out, "\n, "));
+                    write!(out, "\n, ")?;
                 }
-                try!(write!(out, "\t\t{}=\"{}\"", style_escape(key), style_escape(value)));
+                write!(out, "\t\t{}=\"{}\"", style_escape(key), style_escape(value))?;
                 print_comma = true;
             }
-            try!(writeln!(out, "\n\t]"));
+            writeln!(out, "\n\t]")?;
         }
         Ok(())
     }
 
     pub fn print_ending<W: Write>(&self, out: &mut W) -> io::Result<()> {
-        try!(writeln!(out, "}}"));
+        writeln!(out, "}}")?;
         Ok(())
     }
 }
@@ -232,20 +232,20 @@ impl<T: Clone> Node<T> {
     }
 
     pub fn print<W: Write>(&self, out: &mut W) -> io::Result<()> {
-        try!(write!(out, "\t{}", self.id));
+        write!(out, "\t{}", self.id)?;
         if self.styles.len() > 0 {
             let mut print_comma = false;
-            try!(write!(out, " ["));
+            write!(out, " [")?;
             for (key, value) in &self.styles {
                 if print_comma {
-                    try!(write!(out, ", "));
+                    write!(out, ", ")?;
                 }
-                try!(write!(out, "{}=\"{}\"", style_escape(key), style_escape(value)));
+                write!(out, "{}=\"{}\"", style_escape(key), style_escape(value))?;
                 print_comma = true;
             }
-            try!(write!(out, "]"));
+            write!(out, "]")?;
         }
-        try!(write!(out, "\n"));
+        write!(out, "\n")?;
         Ok(())
     }
 
@@ -279,20 +279,20 @@ impl<T: Clone> Edge<T> {
     }
 
     pub fn print<W: Write>(&self, out: &mut W) -> io::Result<()> {
-        try!(write!(out, "\t{} -> {}", self.parent, self.child));
+        write!(out, "\t{} -> {}", self.parent, self.child)?;
         if self.styles.len() > 0 {
             let mut print_comma = false;
-            try!(write!(out, " ["));
+            write!(out, " [")?;
             for (key, value) in &self.styles {
                 if print_comma {
-                    try!(write!(out, ", "));
+                    write!(out, ", ")?;
                 }
-                try!(write!(out, "{}=\"{}\"", style_escape(key), style_escape(value)));
+                write!(out, "{}=\"{}\"", style_escape(key), style_escape(value))?;
                 print_comma = true;
             }
-            try!(write!(out, "]"));
+            write!(out, "]")?;
         }
-        try!(write!(out, "\n"));
+        write!(out, "\n")?;
         Ok(())
     }
 }
