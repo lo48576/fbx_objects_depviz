@@ -1,10 +1,11 @@
 use std::collections::{BTreeMap, HashMap, HashSet};
 use std::io;
 use std::io::Write;
+use std::path::PathBuf;
 
 #[derive(Debug, Clone)]
 pub struct Graph<N: Clone, E: Clone> {
-    pub name: String,
+    pub name: PathBuf,
     pub graph_styles: HashMap<String, String>,
     pub node_styles: HashMap<String, String>,
     pub edge_styles: HashMap<String, String>,
@@ -13,7 +14,7 @@ pub struct Graph<N: Clone, E: Clone> {
 }
 
 impl<N: Clone, E: Clone> Graph<N, E> {
-    pub fn new<T: Into<String>>(name: T) -> Self {
+    pub fn new<T: Into<PathBuf>>(name: T) -> Self {
         Graph {
             name: name.into(),
             graph_styles: Default::default(),
@@ -208,7 +209,7 @@ impl<N: Clone, E: Clone> Graph<N, E> {
     }
 
     pub fn print_beginning<W: Write>(&self, out: &mut W) -> io::Result<()> {
-        writeln!(out, "digraph \"{}\" {{", self.name)?;
+        writeln!(out, "digraph \"{}\" {{", self.name.display())?;
 
         // Print graph settings.
         if !self.graph_styles.is_empty() {
