@@ -1,8 +1,12 @@
 [package]
 name = "fbx_objects_depviz"
 version = "0.1.1"
-authors = ["Takuma Yoshioka <nu11p0.6477@gmail.com>"]
+authors = ["YOSHIOKA Takuma <lo48576@hard-wi.red>"]
 edition = "2018"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+description = "Utility to visualize dependencies of FBX objects"
+repository = "https://github.com/lo48576/fbx_objects_depviz"
 
 [dependencies]
 fbxcel = "0.4.2"
@@ -10,3 +14,6 @@ regex = "1"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 structopt = "0.2"
+
+[badges]
+maintenance = { status = "passively-maintained" }
