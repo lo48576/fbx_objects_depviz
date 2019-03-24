@@ -1,6 +1,9 @@
 //! Contians properties common to the FBX objects.
 
-use fbx_direct::common::OwnedProperty as NodeProperty;
+use fbxcel::pull_parser::{
+    v7400::{attribute::loaders::DirectLoader, Attributes as Attributes7400},
+    ParserSource,
+};
 
 #[derive(Debug, Clone)]
 pub struct ObjectProperties {
@@ -11,49 +14,23 @@ pub struct ObjectProperties {
 }
 
 impl ObjectProperties {
-    pub fn new_from_node_properties(props: Vec<NodeProperty>) -> Option<Self> {
-        let mut prop_iter = props.into_iter();
-        let uid = prop_iter
-            .next()
-            .into_iter()
-            .flat_map(NodeProperty::into_i64)
-            .next();
-        let name_class = prop_iter
-            .next()
-            .into_iter()
-            .flat_map(NodeProperty::into_string)
-            .next();
-        let subclass = prop_iter
-            .next()
-            .into_iter()
-            .flat_map(NodeProperty::into_string)
-            .next();
-        if let (Some(uid), Some((name, class)), Some(subclass)) = (
-            uid,
-            name_class
-                .as_ref()
-                .map(AsRef::as_ref)
-                .and_then(separate_name_class),
-            subclass,
-        ) {
-            Some(ObjectProperties::new(
-                uid,
-                name.to_string(),
-                class.to_string(),
-                subclass,
-            ))
-        } else {
-            None
-        }
-    }
+    pub fn from_attrs7400<R: ParserSource>(attrs: Attributes7400<'_, R>) -> Option<Self> {
+        let mut attrs = attrs.into_iter(std::iter::repeat(DirectLoader));
+        let uid = attrs.next()?.unwrap().get_i64()?;
+        let (name, class) = attrs
+            .next()?
+            .unwrap()
+            .get_string()
+            .and_then(separate_name_class)
+            .map(|(n, c)| (n.to_owned(), c.to_owned()))?;
+        let subclass = attrs.next()?.unwrap().get_string()?.to_owned();
 
-    fn new(uid: i64, name: String, class: String, subclass: String) -> Self {
-        ObjectProperties {
+        Some(Self {
             uid,
             name,
             class,
             subclass,
-        }
+        })
     }
 }
 
