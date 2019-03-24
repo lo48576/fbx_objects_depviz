@@ -1,10 +1,12 @@
-use std::collections::{HashSet, HashMap, BTreeMap};
-use std::io::Write;
-use std::io;
+use std::{
+    collections::{BTreeMap, HashMap, HashSet},
+    io::{self, Write},
+    path::PathBuf,
+};
 
 #[derive(Debug, Clone)]
 pub struct Graph<N: Clone, E: Clone> {
-    pub name: String,
+    pub name: PathBuf,
     pub graph_styles: HashMap<String, String>,
     pub node_styles: HashMap<String, String>,
     pub edge_styles: HashMap<String, String>,
@@ -13,7 +15,7 @@ pub struct Graph<N: Clone, E: Clone> {
 }
 
 impl<N: Clone, E: Clone> Graph<N, E> {
-    pub fn new<T: Into<String>>(name: T) -> Self {
+    pub fn new<T: Into<PathBuf>>(name: T) -> Self {
         Graph {
             name: name.into(),
             graph_styles: Default::default(),
@@ -33,13 +35,22 @@ impl<N: Clone, E: Clone> Graph<N, E> {
     }
 
     pub fn map_ascendant<I, F>(&mut self, targets: I, fun: F)
-        where I: IntoIterator<Item=i64>,
-              F: Fn(&mut Node<N>)
+    where
+        I: IntoIterator<Item = i64>,
+        F: Fn(&mut Node<N>),
     {
         let mut done = HashSet::new();
         // Get parents of `targets`.
-        let mut undone_next = targets.into_iter()
-            .flat_map(|i| self.edges.iter().filter(|e| e.child == i).map(|e| e.parent).collect::<Vec<_>>().into_iter())
+        let mut undone_next = targets
+            .into_iter()
+            .flat_map(|i| {
+                self.edges
+                    .iter()
+                    .filter(|e| e.child == i)
+                    .map(|e| e.parent)
+                    .collect::<Vec<_>>()
+                    .into_iter()
+            })
             .collect::<HashSet<i64>>();
         loop {
             let undone_current = undone_next;
@@ -51,7 +62,13 @@ impl<N: Clone, E: Clone> Graph<N, E> {
                 // Process current node.
                 self.nodes.get_mut(&target).map(&fun);
                 // Queue parents of the `target`.
-                for parent in self.edges.iter().filter(|e| e.child == target).map(|e| e.parent).filter(|p| !done.contains(p)) {
+                for parent in self
+                    .edges
+                    .iter()
+                    .filter(|e| e.child == target)
+                    .map(|e| e.parent)
+                    .filter(|p| !done.contains(p))
+                {
                     undone_next.insert(parent);
                 }
                 done.insert(target);
@@ -63,13 +80,22 @@ impl<N: Clone, E: Clone> Graph<N, E> {
     }
 
     pub fn map_descendant<I, F>(&mut self, targets: I, fun: F)
-        where I: IntoIterator<Item=i64>,
-              F: Fn(&mut Node<N>)
+    where
+        I: IntoIterator<Item = i64>,
+        F: Fn(&mut Node<N>),
     {
         let mut done = HashSet::new();
         // Get children of `targets`.
-        let mut undone_next = targets.into_iter()
-            .flat_map(|i| self.edges.iter().filter(|e| e.parent == i).map(|e| e.child).collect::<Vec<_>>().into_iter())
+        let mut undone_next = targets
+            .into_iter()
+            .flat_map(|i| {
+                self.edges
+                    .iter()
+                    .filter(|e| e.parent == i)
+                    .map(|e| e.child)
+                    .collect::<Vec<_>>()
+                    .into_iter()
+            })
             .collect::<HashSet<i64>>();
         loop {
             let undone_current = undone_next;
@@ -81,7 +107,13 @@ impl<N: Clone, E: Clone> Graph<N, E> {
                 // Process current node.
                 self.nodes.get_mut(&target).map(&fun);
                 // Queue children of the `target`.
-                for parent in self.edges.iter().filter(|e| e.parent == target).map(|e| e.child).filter(|p| !done.contains(p)) {
+                for parent in self
+                    .edges
+                    .iter()
+                    .filter(|e| e.parent == target)
+                    .map(|e| e.child)
+                    .filter(|p| !done.contains(p))
+                {
                     undone_next.insert(parent);
                 }
                 done.insert(target);
@@ -93,12 +125,21 @@ impl<N: Clone, E: Clone> Graph<N, E> {
     }
 
     pub fn map_parents<I, F>(&mut self, targets: I, fun: F)
-        where I: IntoIterator<Item=i64>,
-              F: Fn(&mut Node<N>)
+    where
+        I: IntoIterator<Item = i64>,
+        F: Fn(&mut Node<N>),
     {
         // Get parents of `targets`.
-        let targets = targets.into_iter()
-            .flat_map(|i| self.edges.iter().filter(|e| e.child == i).map(|e| e.parent).collect::<Vec<_>>().into_iter())
+        let targets = targets
+            .into_iter()
+            .flat_map(|i| {
+                self.edges
+                    .iter()
+                    .filter(|e| e.child == i)
+                    .map(|e| e.parent)
+                    .collect::<Vec<_>>()
+                    .into_iter()
+            })
             .collect::<Vec<i64>>();
         for target in targets {
             // Process current node.
@@ -107,12 +148,21 @@ impl<N: Clone, E: Clone> Graph<N, E> {
     }
 
     pub fn map_children<I, F>(&mut self, targets: I, fun: F)
-        where I: IntoIterator<Item=i64>,
-              F: Fn(&mut Node<N>)
+    where
+        I: IntoIterator<Item = i64>,
+        F: Fn(&mut Node<N>),
     {
         // Get children of `targets`.
-        let targets = targets.into_iter()
-            .flat_map(|i| self.edges.iter().filter(|e| e.parent == i).map(|e| e.child).collect::<Vec<_>>().into_iter())
+        let targets = targets
+            .into_iter()
+            .flat_map(|i| {
+                self.edges
+                    .iter()
+                    .filter(|e| e.parent == i)
+                    .map(|e| e.child)
+                    .collect::<Vec<_>>()
+                    .into_iter()
+            })
             .collect::<Vec<i64>>();
         for target in targets {
             // Process current node.
@@ -121,88 +171,93 @@ impl<N: Clone, E: Clone> Graph<N, E> {
     }
 
     pub fn output_all<W: Write>(&self, out: &mut W) -> io::Result<()> {
-        try!(self.print_beginning(out));
+        self.print_beginning(out)?;
         // Print nodes
-        for (_, n) in &self.nodes {
-            try!(n.print(out));
+        for n in self.nodes.values() {
+            n.print(out)?;
         }
         // Print edges
         for e in &self.edges {
-            try!(e.print(out));
+            e.print(out)?;
         }
-        try!(self.print_ending(out));
+        self.print_ending(out)?;
         Ok(())
     }
 
-    pub fn output_visible_nodes<W: Write>(&self, out: &mut W, print_unregistered_nodes: bool) -> io::Result<()> {
-        try!(self.print_beginning(out));
+    pub fn output_visible_nodes<W: Write>(
+        &self,
+        out: &mut W,
+        print_unregistered_nodes: bool,
+    ) -> io::Result<()> {
+        self.print_beginning(out)?;
         // Print visible nodes
-        for (_, n) in self.nodes.iter().filter(|&(_, n)| n.is_visible()) {
-            try!(n.print(out));
+        for n in self.nodes.values().filter(|n| n.is_visible()) {
+            n.print(out)?;
         }
         // Print edges
         for e in &self.edges {
             let parent_is_visible = self.nodes.get(&e.parent).map(|n| n.is_visible());
             let child_is_visible = self.nodes.get(&e.child).map(|n| n.is_visible());
-            if (parent_is_visible.is_some() || child_is_visible.is_some()) &&
-                (parent_is_visible.unwrap_or(print_unregistered_nodes) && child_is_visible.unwrap_or(print_unregistered_nodes))
+            if (parent_is_visible.is_some() || child_is_visible.is_some())
+                && (parent_is_visible.unwrap_or(print_unregistered_nodes)
+                    && child_is_visible.unwrap_or(print_unregistered_nodes))
             {
-                try!(e.print(out));
+                e.print(out)?;
             }
         }
-        try!(self.print_ending(out));
+        self.print_ending(out)?;
         Ok(())
     }
 
     pub fn print_beginning<W: Write>(&self, out: &mut W) -> io::Result<()> {
-        try!(writeln!(out, "digraph \"{}\" {{", self.name));
+        writeln!(out, "digraph \"{}\" {{", self.name.display())?;
 
         // Print graph settings.
-        if self.graph_styles.len() > 0 {
+        if !self.graph_styles.is_empty() {
             let mut print_comma = false;
-            try!(writeln!(out, "\tgraph ["));
+            writeln!(out, "\tgraph [")?;
             for (key, value) in &self.graph_styles {
                 if print_comma {
-                    try!(write!(out, "\n, "));
+                    write!(out, "\n, ")?;
                 }
-                try!(write!(out, "\t\t{}=\"{}\"", style_escape(key), style_escape(value)));
+                write!(out, "\t\t{}=\"{}\"", style_escape(key), style_escape(value))?;
                 print_comma = true;
             }
-            try!(writeln!(out, "\n\t]"));
+            writeln!(out, "\n\t]")?;
         }
 
         // Print node settings.
-        if self.node_styles.len() > 0 {
+        if !self.node_styles.is_empty() {
             let mut print_comma = false;
-            try!(writeln!(out, "\tnode ["));
+            writeln!(out, "\tnode [")?;
             for (key, value) in &self.node_styles {
                 if print_comma {
-                    try!(write!(out, "\n, "));
+                    write!(out, "\n, ")?;
                 }
-                try!(write!(out, "\t\t{}=\"{}\"", style_escape(key), style_escape(value)));
+                write!(out, "\t\t{}=\"{}\"", style_escape(key), style_escape(value))?;
                 print_comma = true;
             }
-            try!(writeln!(out, "\n\t]"));
+            writeln!(out, "\n\t]")?;
         }
 
         // Print edge settings.
-        if self.edge_styles.len() > 0 {
+        if !self.edge_styles.is_empty() {
             let mut print_comma = false;
-            try!(writeln!(out, "\tedge ["));
+            writeln!(out, "\tedge [")?;
             for (key, value) in &self.edge_styles {
                 if print_comma {
-                    try!(write!(out, "\n, "));
+                    write!(out, "\n, ")?;
                 }
-                try!(write!(out, "\t\t{}=\"{}\"", style_escape(key), style_escape(value)));
+                write!(out, "\t\t{}=\"{}\"", style_escape(key), style_escape(value))?;
                 print_comma = true;
             }
-            try!(writeln!(out, "\n\t]"));
+            writeln!(out, "\n\t]")?;
         }
         Ok(())
     }
 
     pub fn print_ending<W: Write>(&self, out: &mut W) -> io::Result<()> {
-        try!(writeln!(out, "}}"));
+        writeln!(out, "}}")?;
         Ok(())
     }
 }
@@ -215,7 +270,7 @@ pub struct Node<T: Clone> {
     pub data: T,
 }
 
-impl<T: Clone+Default> Node<T> {
+impl<T: Clone + Default> Node<T> {
     pub fn new(id: i64) -> Self {
         Node::<T>::new_with_data(id, Default::default())
     }
@@ -224,28 +279,28 @@ impl<T: Clone+Default> Node<T> {
 impl<T: Clone> Node<T> {
     pub fn new_with_data(id: i64, data: T) -> Self {
         Node {
-            id: id,
+            id,
             visible: true,
             styles: Default::default(),
-            data: data
+            data,
         }
     }
 
     pub fn print<W: Write>(&self, out: &mut W) -> io::Result<()> {
-        try!(write!(out, "\t{}", self.id));
-        if self.styles.len() > 0 {
+        write!(out, "\t{}", self.id)?;
+        if !self.styles.is_empty() {
             let mut print_comma = false;
-            try!(write!(out, " ["));
+            write!(out, " [")?;
             for (key, value) in &self.styles {
                 if print_comma {
-                    try!(write!(out, ", "));
+                    write!(out, ", ")?;
                 }
-                try!(write!(out, "{}=\"{}\"", style_escape(key), style_escape(value)));
+                write!(out, "{}=\"{}\"", style_escape(key), style_escape(value))?;
                 print_comma = true;
             }
-            try!(write!(out, "]"));
+            write!(out, "]")?;
         }
-        try!(write!(out, "\n"));
+        writeln!(out)?;
         Ok(())
     }
 
@@ -262,7 +317,7 @@ pub struct Edge<T: Clone> {
     pub data: T,
 }
 
-impl<T: Clone+Default> Edge<T> {
+impl<T: Clone + Default> Edge<T> {
     pub fn new(parent: i64, child: i64) -> Self {
         Edge::<T>::new_with_data(parent, child, Default::default())
     }
@@ -271,28 +326,28 @@ impl<T: Clone+Default> Edge<T> {
 impl<T: Clone> Edge<T> {
     pub fn new_with_data(parent: i64, child: i64, data: T) -> Self {
         Edge {
-            parent: parent,
-            child: child,
+            parent,
+            child,
             styles: Default::default(),
-            data: data,
+            data,
         }
     }
 
     pub fn print<W: Write>(&self, out: &mut W) -> io::Result<()> {
-        try!(write!(out, "\t{} -> {}", self.parent, self.child));
-        if self.styles.len() > 0 {
+        write!(out, "\t{} -> {}", self.parent, self.child)?;
+        if !self.styles.is_empty() {
             let mut print_comma = false;
-            try!(write!(out, " ["));
+            write!(out, " [")?;
             for (key, value) in &self.styles {
                 if print_comma {
-                    try!(write!(out, ", "));
+                    write!(out, ", ")?;
                 }
-                try!(write!(out, "{}=\"{}\"", style_escape(key), style_escape(value)));
+                write!(out, "{}=\"{}\"", style_escape(key), style_escape(value))?;
                 print_comma = true;
             }
-            try!(write!(out, "]"));
+            write!(out, "]")?;
         }
-        try!(write!(out, "\n"));
+        writeln!(out)?;
         Ok(())
     }
 }

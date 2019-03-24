@@ -1,8 +1,11 @@
 use std::collections::{BTreeMap, HashMap};
-use regex::{self, Regex};
-use ::fbx::{Graph, Node, Edge};
 
-#[derive(Debug, Default, Clone, RustcDecodable)]
+use regex::{self, Regex};
+use serde::Deserialize;
+
+use crate::fbx::{Edge, Graph, Node};
+
+#[derive(Debug, Default, Clone, Deserialize)]
 pub struct Filters {
     pub graph_styles: HashMap<String, String>,
     pub node_styles: HashMap<String, String>,
@@ -28,12 +31,20 @@ impl Filters {
 
         {
             // Compile node filter conditions.
-            let node_conditions = self.node_filters.iter()
-                .map(|f| Ok::<_, regex::Error>((try!(f.condition.compile()), &f.operations)))
-                .collect::<Result<Vec<_>, _>>().unwrap();
+            let node_conditions = self
+                .node_filters
+                .iter()
+                .map(|f| Ok::<_, regex::Error>((f.condition.compile()?, &f.operations)))
+                .collect::<Result<Vec<_>, _>>()
+                .unwrap();
             // Apply each condition to all nodes.
             for &(ref cond, op_names) in &node_conditions {
-                let target_uids = graph.nodes.iter().filter(|&(_, node)| cond.is_match(node)).map(|(&uid, _)| uid).collect::<Vec<_>>();
+                let target_uids = graph
+                    .nodes
+                    .iter()
+                    .filter(|&(_, node)| cond.is_match(node))
+                    .map(|(&uid, _)| uid)
+                    .collect::<Vec<_>>();
                 for uid in target_uids {
                     self.apply_node_operations(uid, graph, op_names);
                 }
@@ -41,13 +52,19 @@ impl Filters {
         }
         {
             // Compile edge filter conditions.
-            let edge_conditions = self.edge_filters.iter()
-                .map(|f| Ok::<_, regex::Error>((try!(f.condition.compile()), &f.operations)))
-                .collect::<Result<Vec<_>, _>>().unwrap();
+            let edge_conditions = self
+                .edge_filters
+                .iter()
+                .map(|f| Ok::<_, regex::Error>((f.condition.compile()?, &f.operations)))
+                .collect::<Result<Vec<_>, _>>()
+                .unwrap();
             // Apply each condition to all edges.
             for &(ref cond, op_names) in &edge_conditions {
                 let (nodes, edges) = (&mut graph.nodes, &mut graph.edges);
-                let target_edges = edges.iter_mut().filter(|edge| cond.is_match(edge, nodes)).collect::<Vec<_>>();
+                let target_edges = edges
+                    .iter_mut()
+                    .filter(|edge| cond.is_match(edge, nodes))
+                    .collect::<Vec<_>>();
                 for target_edge in target_edges {
                     self.apply_edge_operation(target_edge, nodes, op_names);
                 }
@@ -55,7 +72,7 @@ impl Filters {
         }
     }
 
-    fn apply_node_operations(&self, id: i64, graph: &mut Graph, ops: &Vec<String>) {
+    fn apply_node_operations(&self, id: i64, graph: &mut Graph, ops: &[String]) {
         for ops in ops.iter().filter_map(|s| self.node_operations.get(s)) {
             for op in ops {
                 match op.name.as_ref() {
@@ -66,48 +83,58 @@ impl Filters {
                             }
                             let name = arg[0].clone();
                             let value = arg[1].clone();
-                            graph.nodes.get_mut(&id).map(|n| n.styles.insert(name, value));
+                            graph
+                                .nodes
+                                .get_mut(&id)
+                                .map(|n| n.styles.insert(name, value));
                         }
-                    },
+                    }
                     "remove-attr" => {
                         if let Some(args) = op.args.get(0) {
                             for name in args {
                                 graph.nodes.get_mut(&id).map(|n| n.styles.remove(name));
                             }
                         }
-                    },
+                    }
                     "hide" | "show" => {
                         let visibility = op.name == "show";
                         if let Some(args) = op.args.get(0) {
                             for target in args {
                                 match target.as_ref() {
                                     "self" => {
-                                        graph.nodes.get_mut(&id).map(|n| n.visible = visibility);
-                                    },
+                                        if let Some(n) = graph.nodes.get_mut(&id) {
+                                            n.visible = visibility;
+                                        }
+                                    }
                                     "ascendant" => {
                                         graph.map_ascendant(Some(id), |n| n.visible = visibility);
-                                    },
+                                    }
                                     "descendant" => {
                                         graph.map_descendant(Some(id), |n| n.visible = visibility);
-                                    },
+                                    }
                                     "parents" => {
                                         graph.map_parents(Some(id), |n| n.visible = visibility);
-                                    },
+                                    }
                                     "children" => {
                                         graph.map_children(Some(id), |n| n.visible = visibility);
-                                    },
-                                    _ => {},
+                                    }
+                                    _ => {}
                                 }
                             }
                         }
-                    },
-                    _ => {},
+                    }
+                    _ => {}
                 }
             }
         }
     }
 
-    fn apply_edge_operation(&self, edge: &mut Edge, _nodes: &mut BTreeMap<i64, Node>, ops: &Vec<String>) {
+    fn apply_edge_operation(
+        &self,
+        edge: &mut Edge,
+        _nodes: &mut BTreeMap<i64, Node>,
+        ops: &[String],
+    ) {
         for ops in ops.iter().filter_map(|s| self.edge_operations.get(s)) {
             for op in ops {
                 match op.name.as_ref() {
@@ -120,41 +147,40 @@ impl Filters {
                             let value = arg[1].clone();
                             edge.styles.insert(name, value);
                         }
-                    },
+                    }
                     "remove-attr" => {
                         if let Some(args) = op.args.get(0) {
                             for name in args {
                                 edge.styles.remove(name);
                             }
                         }
-                    },
-                    _ => {},
+                    }
+                    _ => {}
                 }
             }
         }
     }
 }
 
-
-#[derive(Debug, Clone, RustcDecodable)]
+#[derive(Debug, Clone, Deserialize)]
 pub struct NodeOperation {
     pub name: String,
     pub args: Vec<Vec<String>>,
 }
 
-#[derive(Debug, Clone, RustcDecodable)]
+#[derive(Debug, Clone, Deserialize)]
 pub struct EdgeOperation {
     pub name: String,
     pub args: Vec<Vec<String>>,
 }
 
-#[derive(Debug, Clone, RustcDecodable)]
+#[derive(Debug, Clone, Deserialize)]
 pub struct NodeFilter {
     pub condition: NodeFilterCondition,
     pub operations: Vec<String>,
 }
 
-#[derive(Debug, Clone, RustcDecodable)]
+#[derive(Debug, Clone, Deserialize)]
 pub struct NodeFilterCondition {
     pub class: Option<String>,
     pub subclass: Option<String>,
@@ -165,30 +191,30 @@ pub struct NodeFilterCondition {
 impl NodeFilterCondition {
     pub fn compile(&self) -> Result<CompiledNodeFilterCondition, regex::Error> {
         let class = if let Some(ref s) = self.class {
-            Some(try!(Regex::new(s)))
+            Some(Regex::new(s)?)
         } else {
             None
         };
         let subclass = if let Some(ref s) = self.subclass {
-            Some(try!(Regex::new(s)))
+            Some(Regex::new(s)?)
         } else {
             None
         };
         let name = if let Some(ref s) = self.name {
-            Some(try!(Regex::new(s)))
+            Some(Regex::new(s)?)
         } else {
             None
         };
         let uid = if let Some(ref s) = self.uid {
-            Some(try!(Regex::new(s)))
+            Some(Regex::new(s)?)
         } else {
             None
         };
         Ok(CompiledNodeFilterCondition {
-            class: class,
-            subclass: subclass,
-            name: name,
-            uid: uid,
+            class,
+            subclass,
+            name,
+            uid,
         })
     }
 }
@@ -218,10 +244,8 @@ impl CompiledNodeFilterCondition {
                     return false;
                 }
             }
-        } else {
-            if self.class.is_some() || self.subclass.is_some() || self.name.is_some() {
-                return false;
-            }
+        } else if self.class.is_some() || self.subclass.is_some() || self.name.is_some() {
+            return false;
         }
         if let Some(ref re) = self.uid {
             if !re.is_match(&node.id.to_string()) {
@@ -232,13 +256,13 @@ impl CompiledNodeFilterCondition {
     }
 }
 
-#[derive(Debug, Clone, RustcDecodable)]
+#[derive(Debug, Clone, Deserialize)]
 pub struct EdgeFilter {
     pub condition: EdgeFilterCondition,
     pub operations: Vec<String>,
 }
 
-#[derive(Debug, Clone, RustcDecodable)]
+#[derive(Debug, Clone, Deserialize)]
 pub struct EdgeFilterCondition {
     pub src_condition: Option<NodeFilterCondition>,
     pub dst_condition: Option<NodeFilterCondition>,
@@ -249,30 +273,30 @@ pub struct EdgeFilterCondition {
 impl EdgeFilterCondition {
     pub fn compile(&self) -> Result<CompiledEdgeFilterCondition, regex::Error> {
         let src_condition = if let Some(ref cond) = self.src_condition {
-            Some(try!(cond.compile()))
+            Some(cond.compile()?)
         } else {
             None
         };
         let dst_condition = if let Some(ref cond) = self.dst_condition {
-            Some(try!(cond.compile()))
+            Some(cond.compile()?)
         } else {
             None
         };
         let connection_type = if let Some(ref s) = self.connection_type {
-            Some(try!(Regex::new(s)))
+            Some(Regex::new(s)?)
         } else {
             None
         };
         let property_name = if let Some(ref s) = self.property_name {
-            Some(try!(Regex::new(s)))
+            Some(Regex::new(s)?)
         } else {
             None
         };
         Ok(CompiledEdgeFilterCondition {
-            src_condition: src_condition,
-            dst_condition: dst_condition,
-            connection_type: connection_type,
-            property_name: property_name,
+            src_condition,
+            dst_condition,
+            connection_type,
+            property_name,
         })
     }
 }
