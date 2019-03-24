@@ -1,7 +1,7 @@
-use std::io::Read;
-use fbx_direct::reader::{FbxEvent, EventReader, ParserConfig};
-use fbx_direct::common::OwnedProperty as NodeProperty;
 use self::property::ObjectProperties;
+use fbx_direct::common::OwnedProperty as NodeProperty;
+use fbx_direct::reader::{EventReader, FbxEvent, ParserConfig};
+use std::io::Read;
 
 pub type NodeData = Option<ObjectProperties>;
 
@@ -45,10 +45,10 @@ pub fn traverse<R: Read>(graph: &mut Graph, src: &mut R) {
     let context = &mut Context::new(graph, parser);
 
     match context.reader.next().unwrap() {
-        FbxEvent::StartFbx(_) => {},
+        FbxEvent::StartFbx(_) => {}
         e => {
             panic!("Unexpected event: {:?}", e);
-        },
+        }
     }
 
     while let Some((name, _properties)) = context.get_next_node_event() {
@@ -62,7 +62,8 @@ pub fn traverse<R: Read>(graph: &mut Graph, src: &mut R) {
 
 fn traverse_objects<R: Read>(context: &mut Context<'_, R>) {
     while let Some((name, properties)) = context.get_next_node_event() {
-        let obj_props = if let Some(props) = ObjectProperties::new_from_node_properties(properties) {
+        let obj_props = if let Some(props) = ObjectProperties::new_from_node_properties(properties)
+        {
             props
         } else {
             context.skip_current_node();
@@ -71,12 +72,12 @@ fn traverse_objects<R: Read>(context: &mut Context<'_, R>) {
         match name.as_ref() {
             "Pose" => {
                 traverse_pose(context, obj_props);
-            },
+            }
             _ => {
                 let node = create_object_node(&obj_props);
                 context.graph.add_node(node);
                 context.skip_current_node();
-            },
+            }
         }
     }
 }
@@ -86,16 +87,23 @@ fn traverse_pose<R: Read>(context: &mut Context<'_, R>, obj_props: ObjectPropert
     while let Some((name, properties)) = context.get_next_node_event() {
         match name.as_ref() {
             "Type" => {
-                if let Some(t) = properties.into_iter().flat_map(NodeProperty::into_string).next() {
+                if let Some(t) = properties
+                    .into_iter()
+                    .flat_map(NodeProperty::into_string)
+                    .next()
+                {
                     pose_type = t;
                 }
                 context.skip_current_node();
-            },
+            }
             "PoseNode" => {
                 let mut child_id = None;
                 while let Some((name, properties)) = context.get_next_node_event() {
                     if name == "Node" {
-                        child_id = properties.into_iter().flat_map(NodeProperty::into_i64).next();
+                        child_id = properties
+                            .into_iter()
+                            .flat_map(NodeProperty::into_i64)
+                            .next();
                     }
                     context.skip_current_node();
                 }
@@ -104,7 +112,7 @@ fn traverse_pose<R: Read>(context: &mut Context<'_, R>, obj_props: ObjectPropert
                     edge.data.connection_type = Some("Pose".to_string());
                     context.graph.add_edge(edge);
                 }
-            },
+            }
             _ => context.skip_current_node(),
         }
     }
@@ -120,11 +128,29 @@ fn traverse_connections<R: Read>(context: &mut Context<'_, R>) {
             continue;
         }
         let mut prop_iter = properties.into_iter();
-        let connection_type = prop_iter.next().into_iter().flat_map(NodeProperty::into_string).next();
-        let child_uid = prop_iter.next().into_iter().flat_map(NodeProperty::into_i64).next();
-        let parent_uid = prop_iter.next().into_iter().flat_map(NodeProperty::into_i64).next();
-        let property_name = prop_iter.next().into_iter().flat_map(NodeProperty::into_string).next();
-        if let (Some(connection_type), Some(child_uid), Some(parent_uid)) = (connection_type, child_uid, parent_uid) {
+        let connection_type = prop_iter
+            .next()
+            .into_iter()
+            .flat_map(NodeProperty::into_string)
+            .next();
+        let child_uid = prop_iter
+            .next()
+            .into_iter()
+            .flat_map(NodeProperty::into_i64)
+            .next();
+        let parent_uid = prop_iter
+            .next()
+            .into_iter()
+            .flat_map(NodeProperty::into_i64)
+            .next();
+        let property_name = prop_iter
+            .next()
+            .into_iter()
+            .flat_map(NodeProperty::into_string)
+            .next();
+        if let (Some(connection_type), Some(child_uid), Some(parent_uid)) =
+            (connection_type, child_uid, parent_uid)
+        {
             let mut edge = Edge::new(parent_uid, child_uid);
             edge.data.connection_type = Some(connection_type);
             if let Some(prop_name) = property_name {
@@ -139,7 +165,10 @@ fn traverse_connections<R: Read>(context: &mut Context<'_, R>) {
 
 pub fn create_object_node(obj_props: &ObjectProperties) -> Node {
     let mut node = Node::new_with_data(obj_props.uid, Some(obj_props.clone()));
-    let label = format!("{}::{}\\n{}\\n{}", obj_props.class, obj_props.name, obj_props.subclass, obj_props.uid);
+    let label = format!(
+        "{}::{}\\n{}\\n{}",
+        obj_props.class, obj_props.name, obj_props.subclass, obj_props.uid
+    );
     node.styles.insert("label".to_string(), label);
     node
 }
@@ -149,20 +178,22 @@ pub fn create_object_node(obj_props: &ObjectProperties) -> Node {
 /// Returns `Ok(Some((name, properties)))` if got a start of node event,
 /// `Ok(None)` if got an end of a node or an event,
 /// and `Error` if got an unexpected event (such as a start of FBX document).
-fn get_next_node_event<R: Read>(reader: &mut EventReader<R>) -> Option<(String, Vec<NodeProperty>)> {
+fn get_next_node_event<R: Read>(
+    reader: &mut EventReader<R>,
+) -> Option<(String, Vec<NodeProperty>)> {
     loop {
         match reader.next().unwrap() {
             FbxEvent::StartNode { name, properties } => {
                 return Some((name, properties));
-            },
+            }
             FbxEvent::EndNode | FbxEvent::EndFbx => {
                 return None;
-            },
-            FbxEvent::Comment(_) => {},
+            }
+            FbxEvent::Comment(_) => {}
             ref e => {
                 // Unreachable if programmers use this function properly.
                 panic!("Oops! Expected `StartNode`, `EndNode` or `EndFbx`, but got `{:?}`, this may not be what the programmer(s) wanted...", e);
-            },
+            }
         }
     }
 }
@@ -174,17 +205,17 @@ fn skip_current_node<R: Read>(reader: &mut EventReader<R>) {
         match reader.next().unwrap() {
             FbxEvent::StartNode { .. } => {
                 depth += 1;
-            },
+            }
             FbxEvent::EndNode => {
                 if depth == 0 {
                     return;
                 }
                 depth -= 1;
-            },
+            }
             FbxEvent::EndFbx => {
                 // Unreachable if programmers use this function properly.
                 panic!("Skipped to the end of FBX (but it is not expected)");
-            },
+            }
             _ => {}
         }
     }

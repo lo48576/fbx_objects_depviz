@@ -1,6 +1,6 @@
-use std::collections::{BTreeMap, HashMap};
+use crate::fbx::{Edge, Graph, Node};
 use regex::{self, Regex};
-use crate::fbx::{Graph, Node, Edge};
+use std::collections::{BTreeMap, HashMap};
 
 #[derive(Debug, Default, Clone, RustcDecodable)]
 pub struct Filters {
@@ -28,12 +28,20 @@ impl Filters {
 
         {
             // Compile node filter conditions.
-            let node_conditions = self.node_filters.iter()
+            let node_conditions = self
+                .node_filters
+                .iter()
                 .map(|f| Ok::<_, regex::Error>((f.condition.compile()?, &f.operations)))
-                .collect::<Result<Vec<_>, _>>().unwrap();
+                .collect::<Result<Vec<_>, _>>()
+                .unwrap();
             // Apply each condition to all nodes.
             for &(ref cond, op_names) in &node_conditions {
-                let target_uids = graph.nodes.iter().filter(|&(_, node)| cond.is_match(node)).map(|(&uid, _)| uid).collect::<Vec<_>>();
+                let target_uids = graph
+                    .nodes
+                    .iter()
+                    .filter(|&(_, node)| cond.is_match(node))
+                    .map(|(&uid, _)| uid)
+                    .collect::<Vec<_>>();
                 for uid in target_uids {
                     self.apply_node_operations(uid, graph, op_names);
                 }
@@ -41,13 +49,19 @@ impl Filters {
         }
         {
             // Compile edge filter conditions.
-            let edge_conditions = self.edge_filters.iter()
+            let edge_conditions = self
+                .edge_filters
+                .iter()
                 .map(|f| Ok::<_, regex::Error>((f.condition.compile()?, &f.operations)))
-                .collect::<Result<Vec<_>, _>>().unwrap();
+                .collect::<Result<Vec<_>, _>>()
+                .unwrap();
             // Apply each condition to all edges.
             for &(ref cond, op_names) in &edge_conditions {
                 let (nodes, edges) = (&mut graph.nodes, &mut graph.edges);
-                let target_edges = edges.iter_mut().filter(|edge| cond.is_match(edge, nodes)).collect::<Vec<_>>();
+                let target_edges = edges
+                    .iter_mut()
+                    .filter(|edge| cond.is_match(edge, nodes))
+                    .collect::<Vec<_>>();
                 for target_edge in target_edges {
                     self.apply_edge_operation(target_edge, nodes, op_names);
                 }
@@ -66,16 +80,19 @@ impl Filters {
                             }
                             let name = arg[0].clone();
                             let value = arg[1].clone();
-                            graph.nodes.get_mut(&id).map(|n| n.styles.insert(name, value));
+                            graph
+                                .nodes
+                                .get_mut(&id)
+                                .map(|n| n.styles.insert(name, value));
                         }
-                    },
+                    }
                     "remove-attr" => {
                         if let Some(args) = op.args.get(0) {
                             for name in args {
                                 graph.nodes.get_mut(&id).map(|n| n.styles.remove(name));
                             }
                         }
-                    },
+                    }
                     "hide" | "show" => {
                         let visibility = op.name == "show";
                         if let Some(args) = op.args.get(0) {
@@ -83,31 +100,36 @@ impl Filters {
                                 match target.as_ref() {
                                     "self" => {
                                         graph.nodes.get_mut(&id).map(|n| n.visible = visibility);
-                                    },
+                                    }
                                     "ascendant" => {
                                         graph.map_ascendant(Some(id), |n| n.visible = visibility);
-                                    },
+                                    }
                                     "descendant" => {
                                         graph.map_descendant(Some(id), |n| n.visible = visibility);
-                                    },
+                                    }
                                     "parents" => {
                                         graph.map_parents(Some(id), |n| n.visible = visibility);
-                                    },
+                                    }
                                     "children" => {
                                         graph.map_children(Some(id), |n| n.visible = visibility);
-                                    },
-                                    _ => {},
+                                    }
+                                    _ => {}
                                 }
                             }
                         }
-                    },
-                    _ => {},
+                    }
+                    _ => {}
                 }
             }
         }
     }
 
-    fn apply_edge_operation(&self, edge: &mut Edge, _nodes: &mut BTreeMap<i64, Node>, ops: &Vec<String>) {
+    fn apply_edge_operation(
+        &self,
+        edge: &mut Edge,
+        _nodes: &mut BTreeMap<i64, Node>,
+        ops: &Vec<String>,
+    ) {
         for ops in ops.iter().filter_map(|s| self.edge_operations.get(s)) {
             for op in ops {
                 match op.name.as_ref() {
@@ -120,21 +142,20 @@ impl Filters {
                             let value = arg[1].clone();
                             edge.styles.insert(name, value);
                         }
-                    },
+                    }
                     "remove-attr" => {
                         if let Some(args) = op.args.get(0) {
                             for name in args {
                                 edge.styles.remove(name);
                             }
                         }
-                    },
-                    _ => {},
+                    }
+                    _ => {}
                 }
             }
         }
     }
 }
-
 
 #[derive(Debug, Clone, RustcDecodable)]
 pub struct NodeOperation {

@@ -1,7 +1,7 @@
-use std::fs::File;
-use std::io::{BufReader, BufWriter, Write};
 use docopt::Docopt;
 use rustc_serialize::json;
+use std::fs::File;
+use std::io::{BufReader, BufWriter, Write};
 
 mod fbx;
 pub mod graph;
@@ -47,11 +47,16 @@ fn main() {
         let filters: fbx::filter::Filters = {
             use std::io::Read;
             let mut filter_json_str = String::new();
-            File::open(filter_filename).unwrap().read_to_string(&mut filter_json_str).unwrap();
+            File::open(filter_filename)
+                .unwrap()
+                .read_to_string(&mut filter_json_str)
+                .unwrap();
             json::decode(&filter_json_str).unwrap()
         };
         filters.apply(&mut graph);
-        graph.output_visible_nodes(&mut out, filters.show_implicit_nodes.unwrap_or(false)).unwrap();
+        graph
+            .output_visible_nodes(&mut out, filters.show_implicit_nodes.unwrap_or(false))
+            .unwrap();
     } else {
         graph.output_all(&mut out).unwrap();
     }
