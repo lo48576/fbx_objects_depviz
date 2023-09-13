@@ -1,14 +1,13 @@
+use std::io::Read;
+
 use crate::fbx::{create_object_node, Edge, Graph, ObjectProperties};
 
 use fbxcel::{
     low::v7400::AttributeValue,
-    pull_parser::{
-        v7400::{attribute::loaders::DirectLoader, Attributes, Event, Parser},
-        ParserSource,
-    },
+    pull_parser::v7400::{attribute::loaders::DirectLoader, Attributes, Event, Parser},
 };
 
-pub fn traverse<R: ParserSource>(graph: &mut Graph, mut parser: Parser<R>) {
+pub fn traverse<R: Read>(graph: &mut Graph, mut parser: Parser<R>) {
     assert!(!parser.is_used());
     loop {
         match parser.next_event().expect("Failed to parse") {
@@ -23,7 +22,7 @@ pub fn traverse<R: ParserSource>(graph: &mut Graph, mut parser: Parser<R>) {
     }
 }
 
-fn traverse_objects<R: ParserSource>(graph: &mut Graph, parser: &mut Parser<R>) {
+fn traverse_objects<R: Read>(graph: &mut Graph, parser: &mut Parser<R>) {
     loop {
         match parser.next_event().expect("Failed to parse") {
             Event::StartNode(node) => {
@@ -49,11 +48,7 @@ fn traverse_objects<R: ParserSource>(graph: &mut Graph, parser: &mut Parser<R>) 
     }
 }
 
-fn traverse_pose<R: ParserSource>(
-    graph: &mut Graph,
-    parser: &mut Parser<R>,
-    props: &ObjectProperties,
-) {
+fn traverse_pose<R: Read>(graph: &mut Graph, parser: &mut Parser<R>, props: &ObjectProperties) {
     let mut pose_type = String::new();
     loop {
         match parser.next_event().expect("Failed to parse") {
@@ -97,11 +92,11 @@ fn traverse_pose<R: ParserSource>(
         }
     }
     let _ = pose_type;
-    let node = create_object_node(&props);
+    let node = create_object_node(props);
     graph.add_node(node);
 }
 
-fn traverse_connections<R: ParserSource>(graph: &mut Graph, parser: &mut Parser<R>) {
+fn traverse_connections<R: Read>(graph: &mut Graph, parser: &mut Parser<R>) {
     loop {
         match parser.next_event().expect("Failed to parse") {
             Event::StartNode(node) => {
@@ -128,7 +123,7 @@ fn traverse_connections<R: ParserSource>(graph: &mut Graph, parser: &mut Parser<
     }
 }
 
-fn load_connection<R: ParserSource>(
+fn load_connection<R: Read>(
     attrs: Attributes<'_, R>,
 ) -> Option<(String, i64, i64, Option<String>)> {
     let mut attrs = attrs.into_iter(std::iter::repeat(DirectLoader));

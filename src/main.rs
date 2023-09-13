@@ -27,7 +27,7 @@ fn main() {
 
     let mut src = BufReader::new(File::open(&opt.fbx_path).unwrap());
     let mut out: BufWriter<_> = BufWriter::new(if let Some(ref out_path) = opt.output {
-        Box::new(File::create(&out_path).unwrap()) as Box<dyn Write>
+        Box::new(File::create(out_path).unwrap()) as Box<dyn Write>
     } else {
         Box::new(::std::io::stdout()) as Box<dyn Write>
     });
