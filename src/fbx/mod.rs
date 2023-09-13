@@ -1,6 +1,6 @@
 use std::io::Read;
 
-use fbxcel::pull_parser::any::{self as any_parser, AnyParser};
+use fbxcel::pull_parser::any::AnyParser;
 
 pub use self::property::ObjectProperties;
 
@@ -21,7 +21,7 @@ pub struct EdgeData {
 }
 
 pub fn traverse(graph: &mut Graph, src: impl Read) {
-    match any_parser::from_reader(src).expect("Failed to create FBX parser") {
+    match AnyParser::from_reader(src).expect("Failed to create FBX parser") {
         AnyParser::V7400(parser) => v7400::traverse(graph, parser),
         parser => panic!("Unknown parser version: {:?}", parser.parser_version()),
     }

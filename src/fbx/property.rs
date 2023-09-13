@@ -1,9 +1,8 @@
 //! Contians properties common to the FBX objects.
 
-use fbxcel::pull_parser::{
-    v7400::{attribute::loaders::DirectLoader, Attributes as Attributes7400},
-    ParserSource,
-};
+use std::io::Read;
+
+use fbxcel::pull_parser::v7400::{attribute::loaders::DirectLoader, Attributes as Attributes7400};
 
 #[derive(Debug, Clone)]
 pub struct ObjectProperties {
@@ -14,7 +13,7 @@ pub struct ObjectProperties {
 }
 
 impl ObjectProperties {
-    pub fn from_attrs7400<R: ParserSource>(attrs: Attributes7400<'_, R>) -> Option<Self> {
+    pub fn from_attrs7400<R: Read>(attrs: Attributes7400<'_, R>) -> Option<Self> {
         let mut attrs = attrs.into_iter(std::iter::repeat(DirectLoader));
         let uid = attrs.next()?.unwrap().get_i64()?;
         let (name, class) = attrs
