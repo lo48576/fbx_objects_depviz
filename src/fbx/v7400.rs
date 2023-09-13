@@ -92,7 +92,7 @@ fn traverse_pose<R: Read>(graph: &mut Graph, parser: &mut Parser<R>, props: &Obj
         }
     }
     let _ = pose_type;
-    let node = create_object_node(&props);
+    let node = create_object_node(props);
     graph.add_node(node);
 }
 

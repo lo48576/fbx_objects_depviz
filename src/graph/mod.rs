@@ -353,5 +353,5 @@ impl<T: Clone> Edge<T> {
 }
 
 fn style_escape(raw: &str) -> String {
-    raw.replace("\"", "\\\"")
+    raw.replace('"', "\\\"")
 }
