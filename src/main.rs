@@ -4,26 +4,26 @@ use std::{
     path::PathBuf,
 };
 
-use structopt::StructOpt;
+use clap::Parser;
 
 mod fbx;
 pub mod graph;
 
-#[derive(Debug, StructOpt)]
+#[derive(Debug, Parser)]
 struct CliOpt {
     /// FBX file path
-    #[structopt(name = "fbx-name", parse(from_os_str))]
+    #[clap(name = "fbx-name")]
     fbx_path: PathBuf,
     /// Output dot file path
-    #[structopt(long = "output", parse(from_os_str))]
+    #[clap(long = "output")]
     output: Option<PathBuf>,
     /// Filter json file path
-    #[structopt(long = "filter", parse(from_os_str))]
+    #[clap(long = "filter")]
     filter: Option<PathBuf>,
 }
 
 fn main() {
-    let opt = CliOpt::from_args();
+    let opt = CliOpt::parse();
 
     let mut src = BufReader::new(File::open(&opt.fbx_path).unwrap());
     let mut out: BufWriter<_> = BufWriter::new(if let Some(ref out_path) = opt.output {
